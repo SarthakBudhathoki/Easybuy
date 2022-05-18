@@ -1,0 +1,17 @@
+{% extends 'Navbar/base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">{% endblock %}
+{% block content %}
+
+<div class="container">
+{% for x in images %}
+<img class="thumbnail" src="{{x.image.url}}">
+<p>{{products.price}}1</p>
+{% endfor %}
+<div>
+{% endblock content %}
+
+
+{% block section %}
+
+{% endblock section %}

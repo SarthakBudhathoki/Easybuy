@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body style="background: url({% static '' %});">
+
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="background-image: radial-gradient(circle, #247bfe, #0094ff, #00aaff, #00beff, #3acff9);">
+        <img src="{%static 'images/logo.png'%}" height="40px" alt="Logo">
+         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+                <ul class="navbar-nav ml-auto">
+                
+                    <li class="nav-item">
+                        <a class="navbar-brand " href="/login">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/signup">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/signup">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="navbar-brand" href="/signup">Contact us</a>
+                    </li>
+        
+                </ul>
+        
+              
+                </div> 
+        
+        <div class="collapse navbar-collapse pl-5" id="navbarSupportedContent">
+          <div class="form-inline pl-5">
+          <ul class="navbar-nav pl-5">
+            <p class="pr-5"></p><p class="pr-5"></p><p class="pr-5">
+            <p class="pr-5"></p>
+            </p><p class="pr-5"></p></p><p class="pr-5"></p></p><p class="pr-5"></p></p><p class="pr-5"></p></p><p class="pr-5"></p>
+           
+                
+                </div>
+            
+            <form class="form-inline " action="/search" method="GET">
+            <input name="query" id="query" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
+            <button class="btn btn-light my-2 my-sm-0" type="submit"><img src="{% static 'images/search.png' %}" width="20px" ></button>
+            </form> 
+             
+          </div>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+                <ul class="navbar-nav ml-auto">
+                
+                    <li class="nav-item">
+                   
+                        <a class="navbar-brand " href="/Accounts"><img src="{% static 'images/profile.png' %}" width="30px" ></a>
+                    </li>
+                    <li class="nav-item">
+                          <a class="navbar-brand " href="/cart"><img src="{% static 'images/shopping-cart.png' %}" width="30px" ></a>
+                    </li>
+        
+                </ul>
+        
+              
+                </div> 
+        </div>
+      </nav>
+      
+    <hr>
+
+   {% comment %} <div style="background-image: linear-gradient(to bottom, #06ade8, #15b6ed, #22bef1, #2ec7f5, #3acff9);"> {% endcomment %}
+    {% block content %}
+    
+   
+    {% endblock %} 
+     
+    <br>
+    {% block section %}
+    {% endblock section %}
+{% comment %} </div> {% endcomment %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="js/addons/rating.js"></script>
+</body>
+
+</html>
