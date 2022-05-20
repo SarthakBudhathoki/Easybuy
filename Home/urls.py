@@ -4,11 +4,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('navbar', views.navbar,name="navbar"),
+    path('productpage', views.productpage,name="productpage"),
     path('', views.home ,name="home"),
     path('edit/<int:id>', views.edit ,name="edit"),
-  
-
+    path("search/", views.SearchView, name="search"),
+    path("searchresult/", views.searchresult, name="searchresult"),
 ]
 
 if settings.DEBUG:

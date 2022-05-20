@@ -31,7 +31,7 @@ a:after {
     position: absolute;
     height: 3px;
     width: 0;
-    background-color: #13e224;
+    background-color: #f5f7f5;
     transition: 0.5s;
 }
 

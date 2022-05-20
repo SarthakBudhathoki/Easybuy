@@ -1,21 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block content %}
-
-            <nav class="nav2">
-               <div class="nav2-links" id="navLinks">
-                <i class="fa fa-times" onclick="hideMenu()"></i>
-               </div>
-               <i class="fa fa-bars" onclick="showMenu()"></i>
-
-            </nav>
+{% block content %}    
 
             <div class="text-box">
-                <h1>Customizable Clothing Store</h1>
+             
+                <h1>Customizable Clothing Store
+                
+                <img src="{%static 'images/home.png'%}" height="400px" alt="Logo">
+                </h1>
+                
                 <p class="p2" >We provide the best platform to design clothes and get them delivered in your doorsteps.<br>
                     You can also choose from already available designs and customize them.
                 </p>
+                
+                  
                 <a href="" class="hero-btn">Visit Us to know more</a>
             </div>
 
@@ -25,7 +24,7 @@
 
 
 
-        <!-----------course------->
+
 
          <section class="course">
             <h1>Our features</h1>
@@ -50,7 +49,7 @@
 
          </section>
 
-         <!-------campus------>
+      
 
          <section class="campus">
             <h1> Our Products </h1>
@@ -110,7 +109,7 @@
          </section>
 
 
-         <!--------------testimonials------------->
+         
 
         <section class="testimonials">
             <h1>What our Customers say.</h1>
@@ -147,7 +146,7 @@
             </div>
         </section>
 
-        <!------------Call to Action----->
+       
 
         <section class="cta">
             <h1>Order our products from anywhere in the world.</h1>
@@ -155,25 +154,44 @@
         </section>
     
 
-        <!------------Footer----->
+        
 
         <section class="footer">
-            <h4>About Us</h4>
-            <p>
-                We are the leaders in online customizable clothe with very fast and reliable delivery service.
-            </p>
-            <div class="icons">
-                <i class="fa fa-facebook"></i>
-                <i class="fa fa-twitter"></i>
-                <i class="fa fa-instagram"></i>
-                <i class="fa fa-linkedin"></i>
-
-            </div>
+           	<div class="section">
+		<div class="container2">
+			<div class="content-section">
+				<div class="title">
+					<h1>About Us</h1>
+				</div>
+				<div class="content">
+					<h3>Welcome to EasyBuy, your number one source for Fashion outfits. 
+						We're dedicated to providing you the best of outfits, with a focus on dependability,
+						customer service, and customer satisfaction. We're working to turn our passion for your complete fashion wear into a booming online store.
+						We hope you enjoy our products as much as we enjoy offering them to you.
+															 
+						 Sincerely,
+						
+						 Esibuy</p>
+					<div class="button">
+						<a href="">Read More</a>
+					</div>
+				</div>
+				<div class="social">
+					<a href=""><i class="fab fa-facebook-f"></i></a>
+					<a href=""><i class="fab fa-twitter"></i></a>
+					<a href=""><i class="fab fa-instagram"></i></a>
+				</div>
+			</div>
+			<div class="image-section">
+				<img src="image/img one.jpg">
+			</div>
+		</div>
+	</div>
             <p> Made with <i class="fa fa-heart-o"></i> By Team_F</p>
         </section>
 
 
-        <!---------------JavaScript for toggle Menu------->
+      
         <script>
             var navLinks = document.getElementById("navLinks");
 

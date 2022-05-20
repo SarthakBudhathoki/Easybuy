@@ -5,16 +5,28 @@ from .models import Product
 
 def home(request):
 
-    return render(request,'home2/index.html',)
+    return render(request,'home/home.html',)
 
 
-def navbar(request):
+def productpage(request):
     context  = {
         'products':Product.objects.all(),
         }
     
    
-    return render(request,'Navbar/homepage.html',context)
+    return render(request,'productpage/productpage.html',context)
+
+def SearchView(request):
+    query = request.GET['query']
+    products = Product.objects.filter(name__icontains =query)
+    context ={ 'products':products}
+    return render(request,'productpage/search.html',context)    
+
+def searchresult(request):
+    query = request.GET['query']
+    products = Product.objects.filter(name__icontains =query)
+    context ={ 'products':products}
+    return render(request,'productpage/search.html',context)  
 
 def edit(request, id):
    numbers = Product.objects.get(id=id)
@@ -22,4 +34,4 @@ def edit(request, id):
    context  = {
         'products': products,'numbers' : numbers
       }
-   return render(request,'Navbar/edit.html',context)
+   return render(request,'productpage/edit.html',context)
