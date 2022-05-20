@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -20,13 +22,13 @@
                 <ul class="navbar-nav ml-auto">
                 
                     <li class="nav-item">
-                        <a class="navbar-brand " href="/login">Home</a>
+                        <a class="navbar-brand " href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="navbar-brand" href="/signup">Shop</a>
+                        <a class="navbar-brand" href="productpage">Shop</a>
                     </li>
                     <li class="nav-item">
-                        <a class="navbar-brand" href="/signup">Blog</a>
+                        <a class="navbar-brand" href="/">Blog</a>
                     </li>
                     <li class="nav-item">
                         <a class="navbar-brand" href="/contact">Contact us</a>
@@ -47,7 +49,7 @@
                 
                 </div>
             
-            <form class="form-inline " action="/search" method="GET">
+            <form class="form-inline " action="/searchresult" method="GET">
             <input name="query" id="query" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" required>
             <button class="btn btn-light my-2 my-sm-0" type="submit"><img src="{% static 'images/search.png' %}" width="20px" ></button>
             </form> 

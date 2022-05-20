@@ -4,10 +4,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', views.homepage,name="homepage"),
+    path('productpage', views.productpage,name="productpage"),
+    path('', views.home ,name="home"),
     path('edit/<int:id>', views.edit ,name="edit"),
     path('contact', views.contact, name='contact'),
-  
+    path("search/", views.SearchView, name="search"),
+    path("searchresult/", views.searchresult, name="searchresult"),
 
 ]
 
