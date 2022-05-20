@@ -72,3 +72,11 @@ a:hover:before {
 .checked {
     color: orange;
 }
+
+#ip2 {
+    border-radius: 10px;
+    border: 2px solid #609;
+    padding: 20px;
+    width: 68px;
+    height: 10px;
+}

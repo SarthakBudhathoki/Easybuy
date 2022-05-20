@@ -1,3 +1,4 @@
+from itertools import product
 from django.shortcuts import redirect, render
 from .models import Product
 
@@ -11,7 +12,10 @@ def homepage(request):
    
     return render(request,'Navbar/homepage.html',context)
 
-def edit(request):
-    image = Product.objects.all()
-    
-    return render(request,'Navbar/edit.html',{"image":image})
+def edit(request, id):
+   numbers = Product.objects.get(id=id)
+   products = Product.objects.all()
+   context  = {
+        'products': products,'numbers' : numbers
+      }
+   return render(request,'Navbar/edit.html',context)
