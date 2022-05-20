@@ -19,3 +19,6 @@ def edit(request, id):
         'products': products,'numbers' : numbers
       }
    return render(request,'Navbar/edit.html',context)
+
+def contact(request):
+    return render(request, 'contact/contact.html')
