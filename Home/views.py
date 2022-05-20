@@ -3,8 +3,12 @@ from django.shortcuts import redirect, render
 from .models import Product
 
 
+def home(request):
 
-def homepage(request):
+    return render(request,'home2/index.html',)
+
+
+def navbar(request):
     context  = {
         'products':Product.objects.all(),
         }
