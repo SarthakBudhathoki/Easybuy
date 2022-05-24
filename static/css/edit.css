@@ -1,0 +1,40 @@
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    .productimg img {
+        width: 40%;
+        left: 50%;
+        height: 40%;
+        padding: 10px;
+        position: fixed;
+    }
+    
+    .producttext {
+        padding-top: 50px;
+    }
+    
+    .producttext h1 {
+        color: #6fd1e4;
+        font-family: 'Raleway', sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        line-height: 20px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+    
+    .hide {
+        display: none;
+    }
+    
+    .myDIV:hover+.hide {
+        display: block;
+        color: rgb(22, 20, 20);
+    }
+    
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }

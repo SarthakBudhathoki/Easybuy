@@ -12,6 +12,7 @@ class Category(models.Model):
 
     
 class Product(models.Model):
+    id=models.AutoField(auto_created=True,primary_key=True)
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
