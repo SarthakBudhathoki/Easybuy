@@ -45,5 +45,5 @@ def contact(request):
     return render(request, 'contact/contact.html')
 
 def signuplogin(request):
-    return render(request, 'signuplogin/signuplogin.html')
+    return render(request, 'Account/signuplogin.html')
    

@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/edit.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    {% block css %}{% endblock %}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{% block title %}{% endblock %}</title>
@@ -17,7 +19,7 @@
 <body style="background: url({% static '' %});">
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="background-image: radial-gradient(circle, #247bfe, #0094ff, #00aaff, #00beff, #3acff9);">
-        <img src="{%static 'images/logo.png'%}" height="40px" alt="Logo">
+        <img src="{%static 'images/logo.png'%}" height="20px" alt="Logo">
          <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
                 <ul class="navbar-nav ml-auto">
                 
@@ -45,7 +47,7 @@
         <div class="collapse navbar-collapse pl-5" id="navbarSupportedContent">
           <div class="form-inline pl-5">
           <ul class="navbar-nav pl-5">
-            <p class="pr-5"></p><p class="pr-5"></p><p class="pr-5">
+          </p><p class="pr-5">
             <p class="pr-5"></p>
             </p><p class="pr-5"></p></p><p class="pr-5"></p></p><p class="pr-5"></p></p><p class="pr-5"></p></p><p class="pr-5"></p>
            
@@ -63,7 +65,7 @@
                 
                     <li class="nav-item">
                    
-                        <a class="navbar-brand " href="/Accounts"><img src="{% static 'images/profile.png' %}" width="30px" ></a>
+                        <a class="navbar-brand " href="/signuplogin"><img src="{% static 'images/profile.png' %}" width="30px" ></a>
                     </li>
                     <li class="nav-item">
                           <a class="navbar-brand " href="/cart"><img src="{% static 'images/shopping-cart.png' %}" width="30px" ></a>
