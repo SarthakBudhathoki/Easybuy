@@ -7,6 +7,10 @@ def home(request):
 
     return render(request,'home/home.html',)
 
+def categorie(request):
+
+    return render(request,'productpage/categorie.html',)
+
 
 def productpage(request):
     context  = {
