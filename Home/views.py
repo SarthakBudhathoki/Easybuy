@@ -39,4 +39,7 @@ def edit(request, id):
 
 def contact(request):
     return render(request, 'contact/contact.html')
+
+def signuplogin(request):
+    return render(request, 'signuplogin/signuplogin.html')
    
