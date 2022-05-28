@@ -1,6 +1,9 @@
 from itertools import product
 from django.shortcuts import redirect, render
-from .models import Product
+from .models import Product, Blogs
+from django.contrib.auth import   get_user_model
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
 
 
 def home(request):
@@ -43,4 +46,30 @@ def edit(request, id):
 
 def contact(request):
     return render(request, 'contact/contact.html')
+
+def signuplogin(request):
+    return render(request, 'Account/signuplogin.html')
+
+def showblog(request):
+    user = get_user_model()
+    blogs=Blogs.objects.all()
+
+    return render (request,"blog/blog.html",{'blogs':blogs,})
+
+def blog_detail(request):
+    # single_blog = get_object_or_404(Blogs, pk=id)
+    # usercount = User.objects.all().filter(is_superuser=False).count()
+    # productcount = Products.objects.all().count()
+    # productcount = Khana.objects.all().count()
+
+    # data = {
+    #     'single_blog': single_blog,
+    #     'product':productcount,
+       
+    #     'usercount':usercount,
+    #     # 'bookingcount':bookingcount,
+    #     'productcount':productcount,
+    # }
+
+    return render(request, 'blog/blog_detail.html')
    

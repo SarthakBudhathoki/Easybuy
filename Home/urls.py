@@ -7,10 +7,14 @@ urlpatterns = [
     path('productpage', views.productpage,name="productpage"),
     path('categorie', views.categorie,name="categorie"),
     path('', views.home ,name="home"),
+    path('signuplogin', views.signuplogin ,name="signuplogin"),
     path('edit/<int:id>', views.edit ,name="edit"),
     path('contact', views.contact, name='contact'),
     path("search/", views.SearchView, name="search"),
     path("searchresult/", views.searchresult, name="searchresult"),
+    path('blog', views.showblog, name='blog'),
+    path('blog_detail', views.blog_detail, name='blog_detail'),
+
 
 ]
 
