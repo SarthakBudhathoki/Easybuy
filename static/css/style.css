@@ -36,7 +36,7 @@
     width: 0%;
     /*   hover effect        */
     height: 2px;
-    background-color: #f44336;
+    background-color: #00BFFF;
     display: block;
     margin: auto;
     transition: 0.5s;
@@ -352,7 +352,7 @@ p2 {
 }
 
 .testimonials-col .fa {
-    color: #f44336;
+    color: #00BFFF;
 }
 
 @media(max-width: 700px) {
@@ -404,14 +404,14 @@ p2 {
 }
 
 .icons .fa {
-    color: #f44336;
+    color: #00BFFF;
     margin: 0 13px;
     cursor: pointer;
     padding: 18px 0;
 }
 
 .fa-heart-o {
-    color: #f44336;
+    color: #00BFFF;
 }
 
 .section {
@@ -474,7 +474,7 @@ p2 {
 }
 
 .content-section .content .button a:hover {
-    background-color: #a52a2a;
+    background-color: #00BFFF;
     color: #fff;
 }
 
@@ -483,7 +483,7 @@ p2 {
 }
 
 .content-section .social i {
-    color: #a52a2a;
+    color: #00BFFF;
     font-size: 30px;
     padding: 0px 10px;
 }
