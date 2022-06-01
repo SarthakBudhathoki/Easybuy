@@ -13,8 +13,8 @@ urlpatterns = [
     path('signuplogin', views.signuplogin, name='signuplogin'),
     path("search/", views.SearchView, name="search"),
     path("searchresult/", views.searchresult, name="searchresult"),
-    path('blog', views.showblog, name='blog'),
-    path('blog_detail', views.blog_detail, name='blog_detail'),
+    # path('blog', views.showblog, name='blog'),
+    # path('blog_detail', views.blog_detail, name='blog_detail'),
 
 
 ]
