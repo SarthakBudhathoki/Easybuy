@@ -47,6 +47,7 @@ def edit(request, id):
 def contact(request):
     return render(request, 'contact/contact.html')
 
+<<<<<<< Updated upstream
 def signuplogin(request):
     return render(request, 'Account/signuplogin.html')
 
@@ -72,4 +73,9 @@ def blog_detail(request):
     # }
 
     return render(request, 'blog/blog_detail.html')
+=======
+
+def signuplogin(request):
+    return render(request, 'signuplogin/signuplogin.html')
+>>>>>>> Stashed changes
    

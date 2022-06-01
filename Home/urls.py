@@ -10,6 +10,7 @@ urlpatterns = [
     path('signuplogin', views.signuplogin ,name="signuplogin"),
     path('edit/<int:id>', views.edit ,name="edit"),
     path('contact', views.contact, name='contact'),
+    path('signuplogin', views.signuplogin, name='signuplogin'),
     path("search/", views.SearchView, name="search"),
     path("searchresult/", views.searchresult, name="searchresult"),
     path('blog', views.showblog, name='blog'),
