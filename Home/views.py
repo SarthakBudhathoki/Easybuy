@@ -12,6 +12,12 @@ def home(request):
 
     return render(request,'home/home.html',)
 
+
+
+def login(request):
+
+    return render(request,'Account/signuplogin.html',)
+
 def categorie(request):
 
     return render(request,'productpage/categorie.html',)   
@@ -80,6 +86,12 @@ def store(request):
         print('you are : ', request.session.get('email'))
         return render(request, 'productpage/productpage.html', data)
 
+class Cart(View):
+    def get(self , request):
+        ids = list(request.session.get('cart').keys())
+        products = Product.get_products_by_id(ids)
+        print(products)
+        return render(request , 'cart.html' , {'products' : products} )
 
 def edit(request, id):
    numbers = Product.objects.get(id=id)
@@ -92,39 +104,6 @@ def edit(request, id):
 
 def contact(request):
     return render(request, 'contact/contact.html')
-
-
-class CheckOut(View):
-    def post(self, request):
-        address = request.POST.get('address')
-        phone = request.POST.get('phone')
-        customer = request.session.get('customer')
-        cart = request.session.get('cart')
-        products = Product.get_products_by_id(list(cart.keys()))
-        print(address, phone, customer, cart, products)
-
-        for product in products:
-            print(cart.get(str(product.id)))
-            order = Order(customer=Customer(id=customer),
-                          product=product,
-                          price=product.price,
-                          address=address,
-                          phone=phone,
-                          quantity=cart.get(str(product.id)))
-            order.save()
-        request.session['cart'] = {}
-
-        return redirect('cart')
-
-
-class OrderView(View):
-
-
-    def get(self , request ):
-        customer = request.session.get('customer')
-        orders = Order.get_orders_by_customer(customer)
-        print(orders)
-        return render(request , 'orders.html'  , {'orders' : orders})
 
 
 # class CheckOut(View):
@@ -148,3 +127,15 @@ class OrderView(View):
 #         request.session['cart'] = {}
 
 #         return redirect('cart')
+
+
+class OrderView(View):
+
+
+    def get(self , request ):
+        customer = request.session.get('customer')
+        orders = Order.get_orders_by_customer(customer)
+        print(orders)
+        return render(request , 'orders.html'  , {'orders' : orders})
+
+
