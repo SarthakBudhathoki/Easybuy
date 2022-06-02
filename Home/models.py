@@ -1,5 +1,6 @@
 from django.db import models
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,  HttpResponseRedirect
+from django.contrib.auth.hashers import  check_password
 from django.views import View
 import datetime
 
@@ -64,24 +65,40 @@ class Blogs(models.Model):
     class Meta:
         db_table="blog"
 
-# class Order(models.Model):
-#     product = models.ForeignKey(Product,
-#                                 on_delete=models.CASCADE)
-#     customer = models.ForeignKey(Customer,
-#                                  on_delete=models.CASCADE)
-#     quantity = models.IntegerField(default=1)
-#     price = models.IntegerField()
-#     address = models.CharField(max_length=50, default='', blank=True)
-#     phone = models.CharField(max_length=50, default='', blank=True)
-#     date = models.DateField(default=datetime.datetime.today)
-#     status = models.BooleanField(default=False)
 
-#     def placeOrder(self):
-#         self.save()
+class Login(View):
+    return_url = None
+    def get(self , request):
+        Login.return_url = request.GET.get('return_url')
+        return render(request , 'login.html')
 
-#     @staticmethod
-#     def get_orders_by_customer(customer_id):
-#         return Order.objects.filter(customer=customer_id).order_by('-date')
+    def post(self , request):
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        customer = Customer.get_customer_by_email(email)
+        error_message = None
+        if customer:
+            flag = check_password(password, customer.password)
+            if flag:
+                request.session['customer'] = customer.id
+
+                if Login.return_url:
+                    return HttpResponseRedirect(Login.return_url)
+                else:
+                    Login.return_url = None
+                    return redirect('homepage')
+            else:
+                error_message = 'Email or Password invalid !!'
+        else:
+            error_message = 'Email or Password invalid !!'
+
+        print(email, password)
+        return render(request, 'login.html', {'error': error_message})
+
+def logout(request):
+    request.session.clear()
+    return redirect('login')
+
 
 class Customer(models.Model):
     first_name = models.CharField(max_length=50)
@@ -106,6 +123,25 @@ class Customer(models.Model):
             return True
 
         return  False
+
+class Order(models.Model):
+    product = models.ForeignKey(Product,
+                                on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer,
+                                 on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    price = models.IntegerField()
+    address = models.CharField(max_length=50, default='', blank=True)
+    phone = models.CharField(max_length=50, default='', blank=True)
+    date = models.DateField(default=datetime.datetime.today)
+    status = models.BooleanField(default=False)
+
+    def placeOrder(self):
+        self.save()
+
+    @staticmethod
+    def get_orders_by_customer(customer_id):
+        return Order.objects.filter(customer=customer_id).order_by('-date')
 
 class CheckOut(View):
     def post(self, request):
