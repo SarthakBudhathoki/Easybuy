@@ -10,7 +10,10 @@
     {% for product in products %}
     <div class="col-lg-3">
         <div class="box-element product">
+        <div class = "product-img">
         <img class="thumbnail" src="{{product.image.url}}">
+        </div>
+        <br>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
         <span class="fa fa-star checked"></span>
@@ -28,11 +31,14 @@
                 Add to cart
                 </button>
             </form> 
-              <a class="btn btn-outline-success" href="{% url "edit" product.id%}" >View</a>``
+              <a class="btn btn-outline-success" href="{% url "edit" product.id%}" >View</a>
             <div class="container">
             <span id="rateMe1"></span>
             </div>
-            
+            <div class = "off-info">
+                <h2 class = "sm-title">25% off</h2>
+            </div>
+
 
         </div>
     </div>
