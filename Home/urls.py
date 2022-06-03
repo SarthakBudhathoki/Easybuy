@@ -15,13 +15,13 @@ urlpatterns = [
     path('categorie', views.categorie,name="categorie"),
     path('login', Login.as_view(), name='login'),
     path('signup/', Signup.as_view(), name='signup'),
-     path('logout', views.logout , name='logout'),
+    path('logout', views.logout , name='logout'),
     path('edit/<int:id>', views.edit ,name="edit"),
     path('contact', views.contact, name='contact'),
     path("search/", views.SearchView, name="search"),
     path("searchresult/", views.searchresult, name="searchresult"),
-    # path('blog', views.showblog, name='blog'),
-    # path('blog_detail', views.blog_detail, name='blog_detail'),
+    path('blog', views.showblog, name='blog'),
+    path('blog_detail', views.blog_detail, name='blog_detail'),
 
 
 ]
