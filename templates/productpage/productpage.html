@@ -2,6 +2,8 @@
 {% load static %}
 {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">{% endblock %}
 {% block content %}
+{% load custom_filter %}
+{% load cart %}
 
 <h4 class="d-flex justify-content-center">PRODUCTS<h4>
 <hr>
@@ -23,21 +25,40 @@
             <h6 class = "d-flex justify-content-center pt-3" style="color:red;"><strong>{{product.name}}</strong></h6>
             
             <h4 class="d-flex justify-content-center " style="color:green; "><strong>Rs {{product.price}}</strong></h4>
-            <form   method="post" style="display:inline-block;" class = "pl-4 pt-3"> 
-                {% csrf_token %}
-                <input type="number" name="quantity" placeholder="1" style="width: 2px; border:none;"/>
-                <button class="btn btn-outline-success add-btn update-cart"  onclick="alert('added to cart')"   type="submit">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                Add to cart
-                </button>
+            	<div class="card-footer p-0 no-gutters">
+
+						{% if product|is_in_cart:request.session.cart %}
+						<div class="row no-gutters btn-outline-light">
+							<form action="/#{{product.id}}" class="col-2 " method="post">
+								{% csrf_token %}
+								<input hidden type="text" name='product' value='{{product.id}}'>
+								<input hidden type="text" name='remove' value='True'>
+								<input type="submit" value=" - " class="btn btn-block btn-light border-right">
+							</form>
+							<div class="text-center col btn btn-primary">{{product|cart_quantity:request.session.cart}} in Cart</div>
+							<form action="/#{{product.id}}" class="col-2 " method="post">
+								{% csrf_token %}
+								<input hidden type="text" name='product' value='{{product.id}}'>
+								<input type="submit" value=" + " class="btn btn-block btn-light border-left">
+							</form>
+						</div>
+						{% else %}
+						<form action="/#{{product.id}}" method="POST" class="btn-block">
+							{% csrf_token %}
+							<input hidden type="text" name='product' value='{{product.id}}'>
+							<input type="submit" class="float-right btn btn-light  form-control"
+								value="Add To Cart">
+						</form>
+						{% endif %}
+
+					</div>
+            <hr>
             </form> 
               <a class="btn btn-outline-success" href="{% url "edit" product.id%}" >View</a>
             <div class="container">
             <span id="rateMe1"></span>
             </div>
-            <div class = "off-info">
-                <h2 class = "sm-title">25% off</h2>
-            </div>
+           
 
 
         </div>

@@ -15,35 +15,71 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
+          <form action="/login" class="form1 sign-in-form" method="POST">
+            {% csrf_token %}
+
+                {% if error%}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {% endif %}
             <h2 class="title">Sign in</h2>
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
-            </div>
-            <input type="submit" value="Login" class="btn solid" />
+              <div class="form-group input-field">
+                    <label for="">Email</label>
+                    
+                    <input required type="email" name="email" id=""
+                    value="{{values.email}}" 
+                    class=" form-control-sm form-control" placeholder="example@gmail.com">
+                </div>
+            
+            <div class="form-group input-field">
+                    <label for="">Password</label>
+                    <input type="password" 
+                    name="password" 
+                    id=""
+                     class="form-control form-control-sm" placeholder="********">
+                </div>
+            <input class="btn solid" type="submit" value="Login">
             <p >Forgot password?</p>
-           
           </form>
-          <form action="#" class="sign-up-form">
+          <form action="/signup/" class="form1 sign-up-form" method="POST">
+           {% csrf_token %}
+
+                {% if error%}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {% endif %}
             <h2 class="title">Sign up</h2>
             <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+                 <label>First Name</label>
+               <input type="text" name="firstname"
+                     id="" value="{{values.first_name}}" class="form-control form-control-sm" 
+                     placeholder="First Name">
+                <label>Last Name</label>
+               <input type="text" name="lastname" 
+                    id="" value="{{values.last_name}}" class="form-control form-control-sm" placeholder="Last Name">
             </div>
             <div class="input-field">
-              <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" />
+              
+              <label>phone</label>
+               <input type="text" name="phone" 
+                    id="" class="form-control form-control-sm" value="{{values.phone}}" placeholder="98********" >
+             <label>Email</label>
+              <input required type="email" name="email" id=""
+                    value="{{values.email}}" 
+                    class=" form-control-sm form-control" placeholder="example@gmail.com">
             </div>
             <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
+              <label>Password</label>
+              <input type="password" 
+                    name="password" 
+                    id=""
+                     class="form-control form-control-sm" placeholder="********">
             </div>
-            <input type="submit" class="btn" value="Sign up" />
+            <div class="form-group">
+                    <input class="btn btn-sm btn-info" type="submit" value="Create An Account ">
+                </div>
           </form>
         </div>
       </div>
