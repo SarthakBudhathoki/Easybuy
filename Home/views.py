@@ -16,7 +16,7 @@ def home(request):
 
 class Signup(View):
     def get(self, request):
-        return render(request, 'signup.html')
+        return render(request, 'Account/signuplogin.html')
 
     def post(self, request):
         postData = request.POST
@@ -45,13 +45,13 @@ class Signup(View):
             print(first_name, last_name, phone, email, password)
             customer.password = make_password(customer.password)
             customer.register()
-            return redirect('homepage')
+            return redirect('productpage')
         else:
             data = {
                 'error': error_message,
                 'values': value
             }
-            return render(request, 'signup.html', data)
+            return render(request, 'Account/signuplogin.html', data)
 
     def validateCustomer(self, customer):
         error_message = None;
@@ -98,7 +98,7 @@ class Login(View):
                     return HttpResponseRedirect(Login.return_url)
                 else:
                     Login.return_url = None
-                    return redirect('productpage/productpage.html')
+                    return redirect('/store')
             else:
                 error_message = 'Email or Password invalid !!'
         else:
@@ -109,12 +109,27 @@ class Login(View):
 
 def logout(request):
     request.session.clear()
-    return redirect('Login')
+    return redirect('login')
 
 
 def categorie(request):
+    cart = request.session.get('cart')
+    if not cart:
+        request.session['cart'] = {}
+    products = None
+    categories = Category.get_all_categories()
+    categoryID = request.GET.get('category')
+    if categoryID:
+        products = Product.get_all_products_by_categoryid(categoryID)
+    else:
+        products = Product.get_all_products();
 
-    return render(request,'productpage/categorie.html',)   
+    data = {}
+    data['products'] = products
+    data['categories'] = categories
+
+    print('you are : ', request.session.get('email'))
+    return render(request, 'productpage/categorie.html', data)  
 
 def SearchView(request):
     query = request.GET['query']
@@ -185,7 +200,7 @@ class Cart(View):
         ids = list(request.session.get('cart').keys())
         products = Product.get_products_by_id(ids)
         print(products)
-        return render(request , 'cart.html' , {'products' : products} )
+        return render(request , 'productpage/cart.html' , {'products' : products} )
 
 def edit(request, id):
    numbers = Product.objects.get(id=id)
@@ -200,27 +215,27 @@ def contact(request):
     return render(request, 'contact/contact.html')
 
 
-# class CheckOut(View):
-#     def post(self, request):
-#         address = request.POST.get('address')
-#         phone = request.POST.get('phone')
-#         customer = request.session.get('customer')
-#         cart = request.session.get('cart')
-#         products = Product.get_products_by_id(list(cart.keys()))
-#         print(address, phone, customer, cart, products)
+class CheckOut(View):
+    def post(self, request):
+        address = request.POST.get('address')
+        phone = request.POST.get('phone')
+        customer = request.session.get('customer')
+        cart = request.session.get('cart')
+        products = Product.get_products_by_id(list(cart.keys()))
+        print(address, phone, customer, cart, products)
 
-#         for product in products:
-#             print(cart.get(str(product.id)))
-#             order = Order(customer=Customer(id=customer),
-#                           product=product,
-#                           price=product.price,
-#                           address=address,
-#                           phone=phone,
-#                           quantity=cart.get(str(product.id)))
-#             order.save()
-#         request.session['cart'] = {}
+        for product in products:
+            print(cart.get(str(product.id)))
+            order = Order(customer=Customer(id=customer),
+                          product=product,
+                          price=product.price,
+                          address=address,
+                          phone=phone,
+                          quantity=cart.get(str(product.id)))
+            order.save()
+        request.session['cart'] = {}
 
-#         return redirect('cart')
+        return redirect('cart')
 
 
 class OrderView(View):
@@ -230,6 +245,6 @@ class OrderView(View):
         customer = request.session.get('customer')
         orders = Order.get_orders_by_customer(customer)
         print(orders)
-        return render(request , 'orders.html'  , {'orders' : orders})
+        return render(request , 'productpage/orders.html'  , {'orders' : orders})
 
 

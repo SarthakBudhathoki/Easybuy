@@ -3,18 +3,19 @@ from Home import views
 from django.conf import settings
 from django.conf.urls.static import static
 from .middlewares.auth import  auth_middleware
-from .views import  productpage, store , CheckOut, OrderView, Cart, Login, Signup
+from .views import  *
 
 urlpatterns = [
-    path('', views.home ,name="home"),
-    path('/product', productpage.as_view(), name='productpage'),
+    path('home', views.home ,name="home"),
+    path('', productpage.as_view(), name='productpage'),
     path('store', store , name='store'),
     path('cart', auth_middleware(Cart.as_view()) , name='cart'),
     path('check-out', CheckOut.as_view() , name='checkout'),
     path('orders', auth_middleware(OrderView.as_view()), name='orders'),
     path('categorie', views.categorie,name="categorie"),
     path('login', Login.as_view(), name='login'),
-    path('signup', Signup.as_view(), name='signup'),
+    path('signup/', Signup.as_view(), name='signup'),
+     path('logout', views.logout , name='logout'),
     path('edit/<int:id>', views.edit ,name="edit"),
     path('contact', views.contact, name='contact'),
     path("search/", views.SearchView, name="search"),
