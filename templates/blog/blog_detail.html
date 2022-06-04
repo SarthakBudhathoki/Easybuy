@@ -17,6 +17,35 @@
             line-height: 35px;">Lorem ipsum</p>
         </div>
 
+        <br><br>
+        <hr>
+        <br><br>
+
+        <div class="comment-form">
+            <h2 class="comment-headline">Leave a comment</h2>
+            <form id="submit-form" action="">
+              <p>
+                <input id="name" class="cmtform-input" type="text" placeholder="Your Name*" style=" width: 100%;
+                border: 1px solid #bdbdbd;
+                border-radius: 5px;padding: 1em;">
+                <small class="name-error"></small>
+              </p>
+              <p>
+                <input id="email" class="cmtform-input" type="email" placeholder="Your Email*" style=" width: 100%;
+                border: 1px solid #bdbdbd;
+                border-radius: 5px;padding: 1em;">
+                <small class="name-error"></small>
+              </p>
+              <p class="full-width">
+                <textarea  minlength="20" id="message" cols="30" rows="7" placeholder="Your Message*" required></textarea>
+                <small></small>
+              </p>
+              <p class="full-width">
+                <input type="submit" class="submit-commentbtn" value="Submit" onclick="checkValidations()">
+              </p>
+            </form>
+          </div>
+
     </div>
 
 </section>
