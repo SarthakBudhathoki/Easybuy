@@ -247,4 +247,25 @@ class OrderView(View):
         print(orders)
         return render(request , 'productpage/orders.html'  , {'orders' : orders})
 
+def showblog(request):
+    user = get_user_model()
+    blogs=Blogs.objects.all()
 
+    return render (request,"blog/blog.html",{'blogs':blogs,})
+
+def blog_detail(request):
+    # single_blog = get_object_or_404(Blogs, pk=id)
+    # usercount = User.objects.all().filter(is_superuser=False).count()
+    # productcount = Products.objects.all().count()
+    # productcount = Khana.objects.all().count()
+
+    # data = {
+    #     'single_blog': single_blog,
+    #     'product':productcount,
+       
+    #     'usercount':usercount,
+    #     # 'bookingcount':bookingcount,
+    #     'productcount':productcount,
+    # }
+
+    return render(request, 'blog/blog_detail.html')
