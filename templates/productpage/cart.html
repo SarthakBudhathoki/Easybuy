@@ -17,6 +17,7 @@
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,16 @@
                     <td>{{product.price|currency}}</td>
                     <td>{{product|cart_quantity:request.session.cart}}</td>
                     <td>{{product|price_total:request.session.cart|currency}}</td>
+                    <td>	{% if product|is_in_cart:request.session.cart %}
+						<div class="row no-gutters btn-outline-light">  
+							<form action="cart/#{{product.id}}" class="col-2 " method="post">
+								{% csrf_token %}
+								<input hidden type="text" name='product' value='{{product.id}}'>
+								<input hidden type="text" name='remove' value='True'>
+								<input type="submit" value="Remove item" class="btn btn-block btn-danger border-right">
+							</form>
+						{% endif %}</td>
+
                 </tr>
 
                 {% endfor %}

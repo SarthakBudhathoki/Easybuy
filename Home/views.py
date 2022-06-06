@@ -247,6 +247,14 @@ class OrderView(View):
         print(orders)
         return render(request , 'productpage/orders.html'  , {'orders' : orders})
 
+def delete_cart(request,id):
+    cart = Cart(request)
+    cart.delete(id)
+    messages.error(request,"item has removed")
+    context = {
+            'cart':cart
+          }
+    return render(request,'store/cart.html',context)
 
 def showblog(request):
     user = get_user_model()
