@@ -9,35 +9,17 @@
 
 <div class="container mx-auto mt-4" >
   <div class="row">
-    {% comment %} {% for blog in blogs %} {% endcomment %}
+    {% for blog in blogs %} 
     <div class="col-md-4">
       <div class="card" style="width: 22rem">
-        <img src="/static/images/demo.jpg" alt="">
+        <img src="{{blog.blog_image.url}}" alt="">
         <div class="card-body">
-          <h6 class="card-title mb-2 ">Blog about EasyBuy</h6> <br><br>
-          <a href="{% url 'blog_detail' %}" class="button mr-2"> Read More</a>
+          <h6 class="card-title mb-2 ">{{blog.blog_name}}</h6> <br><br>
+          <a href="{% url 'blog_detail' blog.blog_id %}" class="button mr-2"> Read More</a>
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="card" style="width: 22rem">
-        <img src="/static/images/demo.jpg" alt="">
-        <div class="card-body">
-          <h6 class="card-title mb-2 ">Blog about EasyBuy</h6> <br><br>
-          <a href="{% url 'blog_detail' %}" class="button mr-2"> Read More</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card" style="width: 22rem">
-        <img src="/static/images/demo.jpg" alt="">
-        <div class="card-body">
-          <h6 class="card-title mb-2 ">Blog about EasyBuy</h6> <br><br>
-          <a href="{% url 'blog_detail' %}" class="button mr-2"> Read More</a>
-        </div>
-      </div>
-    </div>
-    {% comment %} {% endfor%} {% endcomment %}
+    {% endfor%} 
   </div>
   <div class="pagination" style=" text-align: center;">
     <!-- <li class="page-item previous-page disable"><a class="page-link" href="#">Prev</a></li>
