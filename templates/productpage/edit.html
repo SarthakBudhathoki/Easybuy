@@ -3,7 +3,8 @@
 {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/edit.css' %}">{% endblock %}
 
 {% block content %}
-
+{% load cart %}
+{% load custom_filter %}
  <div class="container">
 <div class="col-lg-4">
 <div class="productimg">
@@ -14,13 +15,23 @@
 
   <div class = "product-content">
           <h2 class = "product-title">{{numbers.name}}</h2>
-          <div class = "product-rating">
-            <i class = "fas fa-star"></i>
-            <i class = "fas fa-star"></i>
-            <i class = "fas fa-star"></i>
-            <i class = "fas fa-star"></i>
-            <i class = "fas fa-star-half-alt"></i>
-            <span>4.7(21)</span>
+        <div id="full-stars">
+    <div class="rating-group">
+        <input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
+        <label aria-label="1 star" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating3" id="rating3-1" value="1" type="radio">
+        <label aria-label="2 stars" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating3" id="rating3-2" value="2" type="radio">
+        <label aria-label="3 stars" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating3" id="rating3-3" value="3" type="radio">
+        <label aria-label="4 stars" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating3" id="rating3-4" value="4" type="radio">
+        <label aria-label="5 stars" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+        <input class="rating__input" name="rating3" id="rating3-5" value="5" type="radio">
+    </div>
+  <p class="desc" style="font-family: sans-serif; font-size:0.9rem">Full stars<br/>
+    Must select a star value</p>
+</div> 
           </div>
 
           <div class = "product-price">
@@ -41,17 +52,13 @@
             </ul>
           </div>
 
-          <div class = "purchase-info">
-            <input type = "number" min = "0" value = "1">
-            <button type = "button" class = "btn">
-              Add to Cart <i class = "fas fa-shopping-cart"></i>
-            </button>
-            <button type = "button" class = "btn">Compare</button>
-          </div>
-
-          
+         <div class="container">
 
 
+      
+        <hr>
+
+           
 
 {% endblock content %}
 

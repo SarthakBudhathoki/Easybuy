@@ -209,7 +209,7 @@ def edit(request, id):
         'products': products,'numbers' : numbers
       }
 
-   return render(request,'productpage/edit.html',context)
+   return render(request,'productpage/viewpage.html',context)
 
 def contact(request):
     return render(request, 'contact/contact.html')
