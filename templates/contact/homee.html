@@ -1,21 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  margin: 0 auto;
-  max-width: 800px;
-  padding: 0 20px;
-}
+{% extends 'base.html' %}
+{% load static %}
 
-.container {
-  border: 2px solid #dedede;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px 0;
-}
+{% block content %}
 
 .darker {
   border-color: #ccc;
@@ -104,8 +90,9 @@ body {
     </form>
 </div>
 
+{% endblock content %}
 
-</body>
 
+{% block section %}
 
-</html>
+{% endblock section %}
