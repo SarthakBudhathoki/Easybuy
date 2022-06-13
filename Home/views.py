@@ -1,13 +1,15 @@
 from itertools import product
 from multiprocessing import context
-from django.shortcuts import redirect, render, HttpResponseRedirect
+from django.shortcuts import redirect, render, HttpResponseRedirect, HttpResponse
 from .models import Product, Blogs
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import   get_user_model
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.views import  View
 from .models import *
+from django.http import JsonResponse
 
 def home(request):
 
@@ -282,13 +284,13 @@ def blog_detail(request, id):
     return render(request, 'blog/blog_detail.html', data)
 
 #livechat
-def home(request):
-    return render(request, 'home.html')
+def livechat(request):
+    return render(request, 'contact/homee.html')
 
 def room(request, room):
     username = request.GET.get('username')
     room_details = Room.objects.get(name=room)
-    return render(request, 'room.html', {
+    return render(request, 'contact/room.html', {
         'username': username,
         'room': room,
         'room_details': room_details
