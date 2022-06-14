@@ -79,7 +79,6 @@ class Signup(View):
 
         return error_message
 
-
 class Login(View):
     return_url = None
     def get(self , request):
