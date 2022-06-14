@@ -216,6 +216,9 @@ def edit(request, id):
 def contact(request):
     return render(request, 'contact/contact.html')
 
+def profile(request):
+    return render(request, 'profile/profile.html')
+
 def creatorlogin(request):
     return render(request, 'creatorlogin/creatorlogin.html')
 

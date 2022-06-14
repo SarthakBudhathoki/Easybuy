@@ -4,9 +4,14 @@ from django.contrib.auth.hashers import  check_password
 from django.views import View
 import datetime
 
+GENDER_CHOICES = (
+    ('M', 'Male'),
+    ('F', 'Female'),
+)
 
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     slug = models.SlugField(max_length=200, unique=True)
     class Meta:
         ordering = ('name',)
@@ -22,7 +27,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
     
 class Product(models.Model):
     id=models.AutoField(auto_created=True,primary_key=True)
