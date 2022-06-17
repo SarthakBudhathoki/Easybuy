@@ -5,58 +5,6 @@
 {% block content %}
 {% load cart %}
 {% load custom_filter %}
- <div class="container">
-<div class="col-lg-4">
-<div class="productimg">
-<img class="cimage" src="{{numbers.image.url}}" width="20px">
-<div>
-</div>
-</div>
-
-  <div class = "product-content">
-          <h2 class = "product-title">{{numbers.name}}</h2>
-        <div id="full-stars">
-    <div class="rating-group">
-        <input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
-        <label aria-label="1 star" class="rating__label" for="rating3-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating3" id="rating3-1" value="1" type="radio">
-        <label aria-label="2 stars" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating3" id="rating3-2" value="2" type="radio">
-        <label aria-label="3 stars" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating3" id="rating3-3" value="3" type="radio">
-        <label aria-label="4 stars" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating3" id="rating3-4" value="4" type="radio">
-        <label aria-label="5 stars" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-        <input class="rating__input" name="rating3" id="rating3-5" value="5" type="radio">
-    </div>
-  <p class="desc" style="font-family: sans-serif; font-size:0.9rem">Full stars<br/>
-    Must select a star value</p>
-</div> 
-          </div>
-
-          <div class = "product-price">
-            <p class = "last-price">Old Price: <span>$257.00</span></p>
-            <p class = "new-price">New Price: <span>{{numbers.name}}</span></p>
-          </div>
-
-          <div class = "product-detail">
-            <h2>about this item: </h2>
-            <p>{{numbers.description}}</p>
-            </p>
-            <ul>
-              <li>Color: <span>Black</span></li>
-              <li>Available: <span>in stock</span></li>
-              <li>Category: <span>Shoes</span></li>
-              <li>Shipping Area: <span>All over the world</span></li>
-              <li>Shipping Fee: <span>Free</span></li>
-            </ul>
-          </div>
-
-         <div class="container">
-
-
-      
-        <hr>
 
            
 
@@ -64,5 +12,78 @@
 
 
 {% block section %}
+
+	<div class="container">
+		<div class="card">
+			<div class="container-fliud">
+				<div class="wrapper row">
+					<div class="preview col-md-6">
+						
+						<div class="preview-pic tab-content">
+						  <div class="tab-pane active" id="pic-1"><img src="{{numbers.image.url}}" /></div>
+					
+						</div>
+						<ul class="preview-thumbnail nav nav-tabs">
+						
+						 
+						</ul>
+						
+					</div>
+					<div class="details col-md-6">
+						 <label class="custom-field one">
+              <input type="text" placeholder="{{numbers.name}}" readonly/>
+        
+            </label>
+						<div class="rating">
+							<div class="stars">
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>
+							<span class="review-no">41 reviews</span>
+						</div>
+						<p class="product-description">{{numbers.description}}</p>
+						<h4 class="price">current price: <span>Rs <label class="custom-field one"> <input type="text" placeholder="{{numbers.price}}" readonly/></span></h4>
+						<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+						<h5 class="sizes">sizes:
+              <fieldset>
+              <input id="item-1" class="radio-inline__input" type="radio" name="accessible-radio" value="item-1" checked="checked"/>
+              <label class="radio-inline__label" for="item-1">
+                  s
+              </label>
+              <input id="item-2" class="radio-inline__input" type="radio" name="accessible-radio" value="item-2"/>
+              <label class="radio-inline__label" for="item-2">
+                  m
+              </label>
+              <input id="item-3" class="radio-inline__input" type="radio" name="accessible-radio" value="item-3"/>
+              <label class="radio-inline__label" for="item-3">
+                  l
+              </label>
+              <input id="item-4" class="radio-inline__input" type="radio" name="accessible-radio" value="item-4"/>
+              <label class="radio-inline__label" for="item-4">
+                  xl
+              </label>
+            </fieldset>
+						</h5>
+						<h5 class="colors">Choose Colors:
+                <input type="color" id="favcolor" name="favcolor" value=""><br><br>
+              
+						</h5>
+						<div class="action">
+            <div class="frame">
+						<button class="custom-btn btn-6"><span>BUY NOW</span></button>
+                </div>
+              </div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 
 {% endblock section %}
