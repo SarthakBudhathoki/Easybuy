@@ -16,6 +16,11 @@ def home(request):
     return render(request,'home/home.html',)
 
 
+def profile(request):
+    
+    return render(request,'account/profile.html',)
+
+
 class Signup(View):
     def get(self, request):
         return render(request, 'Account/signuplogin.html')
@@ -183,6 +188,7 @@ def store(request):
             request.session['cart'] = {}
         products = None
         categories = Category.get_all_categories()
+        customer = Customer.objects.all()
         categoryID = request.GET.get('category')
         if categoryID:
             products = Product.get_all_products_by_categoryid(categoryID)
@@ -192,6 +198,7 @@ def store(request):
         data = {}
         data['products'] = products
         data['categories'] = categories
+        
 
         print('you are : ', request.session.get('email'))
         return render(request, 'productpage/productpage.html', data)
@@ -210,7 +217,7 @@ def edit(request, id):
         'products': products,'numbers' : numbers
       }
 
-   return render(request,'productpage/viewpage.html',context)
+   return render(request,'productpage/edit.html',context)
 
 def contact(request):
     return render(request, 'contact/contact.html')
@@ -290,41 +297,6 @@ def blog_detail(request, id):
 
 #livechat
 def livechat(request):
-    return render(request, 'contact/homee.html')
-
-def room(request, room):
-    username = request.GET.get('username')
-    room_details = Room.objects.get(name=room)
-    return render(request, 'contact/room.html', {
-        'username': username,
-        'room': room,
-        'room_details': room_details
-    })
-
-def checkview(request):
-    room = request.POST['room_name']
-    username = request.POST['username']
-
-    if Room.objects.filter(name=room).exists():
-        return redirect('/'+room+'/?username='+username)
-    else:
-        new_room = Room.objects.create(name=room)
-        new_room.save()
-        return redirect('/'+room+'/?username='+username)
-
-def send(request):
-    message = request.POST['message']
-    username = request.POST['username']
-    room_id = request.POST['room_id']
-
-    new_message = Message.objects.create(value=message, user=username, room=room_id)
-    new_message.save()
-    return HttpResponse('Message sent successfully')
-
-def getMessages(request, room):
-    room_details = Room.objects.get(name=room)
-
-    messages = Message.objects.filter(room=room_details.id)
-    return JsonResponse({"messages":list(messages.values())}) 
+    return render(request, 'contact/homee.html' )
    
-   
+  

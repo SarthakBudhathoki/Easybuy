@@ -135,6 +135,8 @@ class Order(models.Model):
                                  on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     price = models.IntegerField()
+    color = models.CharField(max_length=50, default='', blank=True, null=True)
+    size = models.CharField(max_length=50, default='', blank=True, null=True)
     address = models.CharField(max_length=50, default='', blank=True)
     phone = models.CharField(max_length=50, default='', blank=True)
     date = models.DateField(default=datetime.datetime.today)
@@ -168,17 +170,7 @@ class CheckOut(View):
         request.session['cart'] = {}
 
         return redirect('cart')
-
-
-class Room(models.Model):
-    name = models.CharField(max_length=1000)
-
-
-class Message(models.Model):
-    value = models.CharField(max_length=1000000)
-    date = models.DateTimeField(auto_now_add=True, blank=True)
-    user = models.CharField(max_length=1000000)
-    room = models.CharField(max_length=1000000)        
+    
 
 # RATE_CHOICES = [
 #     (1,'1 - very bad'),
