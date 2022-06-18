@@ -316,3 +316,55 @@ form.sign-in-form {
     color: var(--white);
     border: none;
 }
+
+@media (max-width: 570px) {
+    form {
+        padding: 0 1.5rem;
+    }
+    .image {
+        display: none;
+    }
+    .panel .content {
+        padding: 0.5rem 1rem;
+    }
+}
+
+.input-field2 {
+    max-width: 380px;
+    width: 25%;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    height: 40px;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+    font-weight: 20px;
+    font-size: 15px;
+    color: white;
+    background-color: #2ac6ec;
+    border-style: solid;
+    border-color: #2ac6ec;
+    padding: 2px;
+    text-align: center;
+}
+
+.input-field2:hover {
+    max-width: 380px;
+    width: 25%;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    height: 40px;
+    border-radius: 60px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+    font-weight: 20px;
+    font-size: 15px;
+    border-color: #2ac6ec;
+    background-color: #2ac6ec;
+    color: var(--white);
+    border: none;
+}
