@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     {% block css %}{% endblock %}
+    <!-- for khalti -->
+    <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script> 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{% block title %}{% endblock %}</title>
@@ -44,10 +46,6 @@
                     <li class="nav-item">
                         <a class="navbar-brand" href="/creatorlogin">creator</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="{% url "livechat" %}">livechat</a>
-                    </li>
-        
                 </ul>
         
               
@@ -128,6 +126,59 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="js/addons/rating.js"></script>
 <script>$('.dropdown-toggle').dropdown()</script>
+<script>
+<<<<<<< HEAD
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/62a9fcebb0d10b6f3e7785f8/1g5k07unt';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+</script>
+
+=======
+    var config = {
+        // replace the publicKey with yours
+        "publicKey": "test_public_key_b6da2d98bc574cb88473342277eb4306",
+        "productIdentity": "1234567890",
+        "productName": "Dragon",
+        "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
+        "paymentPreference": [
+            "KHALTI",
+            "EBANKING",
+            "MOBILE_BANKING",
+            "CONNECT_IPS",
+            "SCT",
+            ],
+        "eventHandler": {
+            onSuccess (payload) {
+                // hit merchant api for initiating verfication
+                console.log(payload);
+            },
+            onError (error) {
+                console.log(error);
+            },
+            onClose () {
+                console.log('widget is closing');
+            }
+        }
+    };
+
+    var checkout = new KhaltiCheckout(config);
+    var btn = document.getElementById("payment-button");
+    btn.onclick = function () {
+        // minimum transaction amount must be 10, i.e 1000 in paisa.
+        checkout.show({amount: 1000});
+    }
+</script>
+>>>>>>> 8e751ccb130d8b35ddbb0d69acdfca18ece25be9
 </body>
 
 </html>

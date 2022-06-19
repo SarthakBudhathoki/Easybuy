@@ -26,8 +26,6 @@ urlpatterns = [
     path('blog/', views.showblog, name='blog'),
     path('creatorlogin', views.creatorlogin, name="creatorlogin"),
     path('<int:id>', views.blog_detail, name='blog_detail'),
-     path('livechat', views.livechat, name= 'livechat'),
-  
    
 
 ]

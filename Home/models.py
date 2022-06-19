@@ -149,28 +149,28 @@ class Order(models.Model):
     def get_orders_by_customer(customer_id):
         return Order.objects.filter(customer=customer_id).order_by('-date')
 
-class CheckOut(View):
-    def post(self, request):
-        address = request.POST.get('address')
-        phone = request.POST.get('phone')
-        customer = request.session.get('customer')
-        cart = request.session.get('cart')
-        products = Product.get_products_by_id(list(cart.keys()))
-        print(address, phone, customer, cart, products)
+  
 
-        for product in products:
-            print(cart.get(str(product.id)))
-            order = Order(customer=Customer(id=customer),
-                          product=product,
-                          price=product.price,
-                          address=address,
-                          phone=phone,
-                          quantity=cart.get(str(product.id)))
-            order.save()
-        request.session['cart'] = {}
 
-        return redirect('cart')
-    
+class editOrders(models.Model):
+    productname = models.CharField(max_length=50, default='', null=True)
+    customer = models.CharField(max_length=50, default='', null=True)
+    price = models.IntegerField(null=True)
+    color = models.CharField(max_length=50, default='', blank=True, null=True)
+    size = models.CharField(max_length=50, default='', blank=True, null=True)
+    address = models.CharField(max_length=50, default='', blank=True)
+    phone = models.CharField(max_length=50, default='', blank=True)
+    date = models.DateField(default=datetime.datetime.today)
+
+    class Meta:
+        db_table="orderform"
+
+    def __str__(self):
+        return self.productname
+
+
+
+
 
 # RATE_CHOICES = [
 #     (1,'1 - very bad'),

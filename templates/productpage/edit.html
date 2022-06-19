@@ -15,6 +15,8 @@
 
 	<div class="container">
 		<div class="card">
+		  <form action="" method="POST">
+           {% csrf_token %}
 			<div class="container-fliud">
 				<div class="wrapper row">
 					<div class="preview col-md-6">
@@ -31,7 +33,7 @@
 					</div>
 					<div class="details col-md-6">
 						 <label class="custom-field one">
-              <input type="text" placeholder="{{numbers.name}}" readonly/>
+              <input type="text"  name="{{numbers.name}}" placeholder="{{numbers.name}}" readonly/>
         
             </label>
 						<div class="rating">
@@ -45,44 +47,55 @@
 							<span class="review-no">41 reviews</span>
 						</div>
 						<p class="product-description">{{numbers.description}}</p>
-						<h4 class="price">current price: <span>Rs <label class="custom-field one"> <input type="text" placeholder="{{numbers.price}}" readonly/></span></h4>
+						<h4 class="price">current price: <span>Rs <label class="custom-field one"> <input type="text" name="{{numbers.price}}" placeholder="{{numbers.price}}" readonly/></span></h4>
 						<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
 						<h5 class="sizes">sizes:
               <fieldset>
-              <input id="item-1" class="radio-inline__input" type="radio" name="accessible-radio" value="item-1" checked="checked"/>
+              <input id="item-1" class="radio-inline__input" type="radio" name="size" value="s" checked="checked"/>
               <label class="radio-inline__label" for="item-1">
                   s
               </label>
-              <input id="item-2" class="radio-inline__input" type="radio" name="accessible-radio" value="item-2"/>
+              <input id="item-2" class="radio-inline__input" type="radio" name="size" value="m"/>
               <label class="radio-inline__label" for="item-2">
                   m
               </label>
-              <input id="item-3" class="radio-inline__input" type="radio" name="accessible-radio" value="item-3"/>
+              <input id="item-3" class="radio-inline__input" type="radio" name="size" value="l"/>
               <label class="radio-inline__label" for="item-3">
                   l
               </label>
-              <input id="item-4" class="radio-inline__input" type="radio" name="accessible-radio" value="item-4"/>
+              <input id="item-4" class="radio-inline__input" type="radio" name="size" value="xl"/>
               <label class="radio-inline__label" for="item-4">
                   xl
               </label>
             </fieldset>
 						</h5>
 						<h5 class="colors">Choose Colors:
-                <input type="color" id="favcolor" name="favcolor" value=""><br><br>
-              
-						</h5>
-						<div class="action">
-            <div class="frame">
-						<button class="custom-btn btn-6"><span>BUY NOW</span></button>
+                <input type="color" id="favcolor" name="color" value=""><br><br>
+              <hr>
+			<div class="form-group">
+                  <label for="">Address</label>
+                  <input type="text" name="address" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  
                 </div>
-              </div>
+                <div class="form-group">
+                    <label for="">Phone</label>
+                    <input type="text" name="phone" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  </div>
+        <div class="m-3 p-3">
+			 <input type="submit" class="custom-btn btn-6" value="buynow	">
+        </div>
+   </div>
+</div>
 
+</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+
 
 
 

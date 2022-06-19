@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.views import  View
+from .forms import *
 from .models import *
 from django.http import JsonResponse
 
@@ -211,13 +212,29 @@ class Cart(View):
         return render(request , 'productpage/cart.html' , {'products' : products} )
 
 def edit(request, id):
-   numbers = Product.objects.get(id=id)
-   products = Product.objects.all()
-   context  = {
+    numbers = Product.objects.get(id=id)
+    products = Product.objects.all()
+    context  = {
         'products': products,'numbers' : numbers
       }
+    print(request)
+    if request.method =='POST':
+        form = orderform(request.POST)
+        if form.is_valid(): 
+                form.save()
+                user = form.cleaned_data.get('username')
+                messages.success(request,"your order has been placed " + user)
+                print(form)
+        else:
+            print(form)
+            messages.success(request,"your order could not be placed " )
+        return redirect('/')     
+                
 
-   return render(request,'productpage/edit.html',context)
+    return render(request,'productpage/edit.html',context)
+
+
+
 
 def contact(request):
     return render(request, 'contact/contact.html')
@@ -295,8 +312,4 @@ def blog_detail(request, id):
 
     return render(request, 'blog/blog_detail.html', data)
 
-#livechat
-def livechat(request):
-    return render(request, 'contact/homee.html' )
-   
   
