@@ -14,3 +14,8 @@ class CategoryAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name','category','price',"available"]
     prepopulated_fields = {"slug":("name",)}
+
+admin.site.register(Customer )
+admin.site.register(Order )
+admin.site.register(Blogs)
+admin.site.register(editOrders)

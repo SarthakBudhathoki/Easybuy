@@ -1,83 +1,102 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/edit.css' %}">{% endblock %}
 
 {% block content %}
+{% load cart %}
+{% load custom_filter %}
 
-<div class="container">
-<div class="col-lg-4">
- <div class="productimg">
-<img class="cimage" src="{{numbers.image.url}}" width="20px">
-<div>
-</div>
-</div>
-<div class="producttext">
-<h1>Name: {{numbers.name}}<h1>
-<span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-
-<h4>Price: Rs {{numbers.price}}/-<h4>
-<h4>Description: {{numbers.description}}<h4>
-</div>
-    <ul class="navbar-nav ml-auto">
-                
-                    <li class="nav-item">
-                   
-                        <a class="navbar-brand " href="/Accounts"><img src="{% static 'images/black.png' %}" width="30px" ></a>
-                        <a class="navbar-brand " href="/cart"><img src="{% static 'images/white.png' %}" width="30px" ></a>
-                        <a class="navbar-brand " href="/cart"><img src="{% static 'images/red.png' %}" width="30px" ></a>
-                        <a class="navbar-brand " href="/cart"><img src="{% static 'images/blue.png' %}" width="30px" ></a>
-                    </li>
-        
-                </ul>
-<br>
-
-<div class="myDIV">XS</div>
-<div class="hide">Product Measurement
-Length: 68 cm Bust: 68 cm Waist Size: 58 cm Hip Size: 65 cm</div>
-<div class="myDIV">S</div>
-<div class="hide">Product Measurement
-Length: 68 cm Bust: 68 cm Waist Size: 58 cm Hip Size: 65 cm</div>
-<div class="myDIV">M</div>
-<div class="hide">Product Measurement
-Length: 68 cm Bust: 68 cm Waist Size: 58 cm Hip Size: 65 cm</div>
-<div class="myDIV">L</div>
-<div class="hide">Product Measurement
-Length: 68 cm Bust: 68 cm Waist Size: 58 cm Hip Size: 65 cm</div>
-<div class="myDIV">Xl</div>
-<div class="hide">Product Measurement
-Length: 68 cm Bust: 68 cm Waist Size: 58 cm Hip Size: 65 cm</div>
-
-<br>
-<label for="fname">Chest:</label>
-
-<input type="text" id="ip2" maxlength="4" />
-<br>
-<label for="fname">Weight:</label>
-
-<input type="text" id="ip2" maxlength="4" />
-    <br>
-<button class="btn btn-outline-success add-btn update-cart"  onclick="alert('added to cart')"   type="submit">
-                
-                Buy Now
-                </button>
-<form   method="post" style="display:inline-block;" class = "pl-4 pt-3"> 
-                {% csrf_token %}
-                <input type="number" name="quantity" placeholder="1" style="width: 2px; border:none;"/>
-                <button class="btn btn-outline-success add-btn update-cart"  onclick="alert('added to cart')"   type="submit">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                Add to cart
-                </button>
-</form> 
            
-
->
 
 {% endblock content %}
 
 
 {% block section %}
+
+	<div class="container">
+		<div class="card">
+		  <form action="" method="POST">
+           {% csrf_token %}
+			<div class="container-fliud">
+				<div class="wrapper row">
+					<div class="preview col-md-6">
+						
+						<div class="preview-pic tab-content">
+						  <div class="tab-pane active" id="pic-1"><img src="{{numbers.image.url}}" /></div>
+					
+						</div>
+						<ul class="preview-thumbnail nav nav-tabs">
+						
+						 
+						</ul>
+						
+					</div>
+					<div class="details col-md-6">
+						 <label class="custom-field one">
+              <input type="text"  name="{{numbers.name}}" placeholder="{{numbers.name}}" readonly/>
+        
+            </label>
+						<div class="rating">
+							<div class="stars">
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star checked"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>
+							<span class="review-no">41 reviews</span>
+						</div>
+						<p class="product-description">{{numbers.description}}</p>
+						<h4 class="price">current price: <span>Rs <label class="custom-field one"> <input type="text" name="{{numbers.price}}" placeholder="{{numbers.price}}" readonly/></span></h4>
+						<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+						<h5 class="sizes">sizes:
+              <fieldset>
+              <input id="item-1" class="radio-inline__input" type="radio" name="size" value="s" checked="checked"/>
+              <label class="radio-inline__label" for="item-1">
+                  s
+              </label>
+              <input id="item-2" class="radio-inline__input" type="radio" name="size" value="m"/>
+              <label class="radio-inline__label" for="item-2">
+                  m
+              </label>
+              <input id="item-3" class="radio-inline__input" type="radio" name="size" value="l"/>
+              <label class="radio-inline__label" for="item-3">
+                  l
+              </label>
+              <input id="item-4" class="radio-inline__input" type="radio" name="size" value="xl"/>
+              <label class="radio-inline__label" for="item-4">
+                  xl
+              </label>
+            </fieldset>
+						</h5>
+						<h5 class="colors">Choose Colors:
+                <input type="color" id="favcolor" name="color" value=""><br><br>
+              <hr>
+			<div class="form-group">
+                  <label for="">Address</label>
+                  <input type="text" name="address" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  
+                </div>
+                <div class="form-group">
+                    <label for="">Phone</label>
+                    <input type="text" name="phone" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                  </div>
+        <div class="m-3 p-3">
+			 <input type="submit" class="custom-btn btn-6" value="buynow	">
+        </div>
+   </div>
+</div>
+
+</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
 
 {% endblock section %}

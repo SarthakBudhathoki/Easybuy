@@ -1,0 +1,42 @@
+.comment-headline:after {
+    content: "";
+    display: block;
+    width: 159%;
+    padding-top: 10px;
+    border-bottom: 1px solid #000;
+}
+
+.cmtform-input:focus,
+textarea:focus {
+    outline: 1.5px solid #ec1c24;
+}
+
+.cmtform-input,
+textarea {
+    width: 100%;
+    border: 1px solid #bdbdbd;
+    padding: 1em;
+}
+
+.submit-commentbtn,
+.cmtform-input,
+textarea {
+    padding: 1em;
+}
+
+.submit-commentbtn {
+    background: #1E2639;
+    border: 1px solid #1E2639;
+    color: #fff;
+    border-radius: 15px;
+    padding: 5px 20px;
+    text-transform: uppercase;
+}
+
+.submit-commentbtn:hover,
+button:focus,
+.submit-commentbtn:focus {
+    background: #ec1c24;
+    outline: 0;
+    color: #eee;
+}

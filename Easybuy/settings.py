@@ -73,6 +73,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Easybuy.wsgi.application'
 
 
+
+CHANNEL_LAYER = {
+    'defult':{
+        "backend": 'channels.layer.InMemoryChannelLayer'
+    }
+}
+
+
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
