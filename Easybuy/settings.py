@@ -73,13 +73,21 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Easybuy.wsgi.application'
 
 
+
+CHANNEL_LAYER = {
+    'defult':{
+        "backend": 'channels.layer.InMemoryChannelLayer'
+    }
+}
+
+
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(BASE_DIR / 'db.sqlite3'),
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

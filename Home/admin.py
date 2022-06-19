@@ -18,3 +18,4 @@ class CategoryAdmin(admin.ModelAdmin):
 admin.site.register(Customer )
 admin.site.register(Order )
 admin.site.register(Blogs)
+admin.site.register(editOrders)

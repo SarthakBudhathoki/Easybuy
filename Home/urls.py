@@ -24,8 +24,6 @@ urlpatterns = [
     path("searchresult/", views.searchresult, name="searchresult"),
     path('blog/', views.showblog, name='blog'),
     path('<int:id>', views.blog_detail, name='blog_detail'),
-     path('livechat', views.livechat, name= 'livechat'),
-  
    
 
 ]
