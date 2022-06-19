@@ -16,6 +16,7 @@ urlpatterns = [
     path('categorie', views.categorie,name="categorie"),
     path('login', Login.as_view(), name='login'),
     path('signup/', Signup.as_view(), name='signup'),
+    path('profile', views.profile, name='profile'),
     path('logout', views.logout , name='logout'),
     path('edit/<int:id>', views.edit ,name="edit"),
     path('contact', views.contact, name='contact'),
@@ -24,10 +25,7 @@ urlpatterns = [
     path('blog/', views.showblog, name='blog'),
     path('<int:id>', views.blog_detail, name='blog_detail'),
      path('livechat', views.livechat, name= 'livechat'),
-    path('<str:room>/', views.room, name='room'),
-    path('checkview', views.checkview, name='checkview'),
-    path('send', views.send,name='send'),
-    path('getMessages/<str:room>/', views.getMessages, name='getMessages'),
+  
    
 
 ]
