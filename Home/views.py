@@ -226,7 +226,7 @@ def profile(request):
     return render(request, 'profile/profile.html')
 
 def creatorlogin(request):
-    return render(request, 'creatorlogin/creatorlogin.html')
+    return render(request, 'Account/creatorlogin.html')
 
 
 class CheckOut(View):
