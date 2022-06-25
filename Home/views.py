@@ -18,8 +18,11 @@ def home(request):
 
 
 def profile(request):
-    
-    return render(request,'account/profile.html',)
+    customer = Customer.objects.all()
+    context  = {
+        'customer': customer,
+      }
+    return render(request,'Account/profile.html',context)
 
 
 class Signup(View):
@@ -286,7 +289,7 @@ def showblog(request):
     user = get_user_model()
     blogs=Blogs.objects.all()
 
-    return render (request,"blog/blog.html",{'blogs':blogs,})
+    return render (request,"blog/blogpage.html",{'blogs':blogs,})
 
 def blog_detail(request, id):
     single_blog = get_object_or_404(Blogs, pk=id)

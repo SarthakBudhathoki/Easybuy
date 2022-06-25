@@ -1,32 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">{% endblock %}
 {% block content %}    
-
-            <div class="text-box">
-             
-                <h1>Customizable Clothing Store
+<div class="pt-5 pb-5"></div>
+ <section class="landing pt-5 pb-5">
+    <div class="landing-text">
+      <h1>Customizable Clothing Store</h1>
                 
-                <img src="{%static 'images/home.png'%}" height="400px" alt="Logo">
-                </h1>
-                
-                <p class="p2" >We provide the best platform to design clothes and get them delivered in your doorsteps.<br>
+      <p class="p2">
+       We provide the best platform to design clothes and get them delivered in your doorsteps.<br>
                     You can also choose from already available designs and customize them.
-                </p>
-                
-                  
-                <a href="" class="hero-btn">Visit Us to know more</a>
-            </div>
+      </p>
 
-       
-        </section>
+      <button class="custom-btn btn-12"><span>Click!</span><span>Get Started</span></button>
+    </div>
+    <div class="landing-image">
+      <img src="https://raw.githubusercontent.com/MohamedAridah/frontendmentor_url-shortening-api/main/images/illustration-working.svg" alt="Working Illustration" />
+    </div>
+  </section>
+<div class="pb-5 pt-5"></div>
+<div class="pb-5"></div>
 
-
-
-
-
-
-         <section class="course">
+<section class="course pt-5">
             <h1>Our features</h1>
             <p>You can be sure of these things in our products.</p>
             <div class="row">

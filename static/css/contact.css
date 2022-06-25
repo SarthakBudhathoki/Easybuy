@@ -1,12 +1,18 @@
 /* color:  red#ec1c24, black#212d31, grey#343a40, white#eee  */
 
 * {
-    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
 }
 
 body {
-    color: #212d31;
-    font-family: 'Roboto', sans-serif;
+    background: #eee;
 }
 
 .contain {
@@ -150,9 +156,6 @@ textarea {
 
 button,
 .submit-btn {
-    background: #1E2639;
-    border: 1px solid #1E2639;
-    color: #fff;
     border-radius: 15px;
     padding: 5px 20px;
     text-transform: uppercase;
@@ -162,9 +165,7 @@ button:hover,
 .submit-btn:hover,
 button:focus,
 .submit-btn:focus {
-    background: #ec1c24;
     outline: 0;
-    color: #eee;
 }
 
 .error {
