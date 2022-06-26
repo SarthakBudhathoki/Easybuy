@@ -54,6 +54,7 @@
         <div class="pl-5 collapse navbar-collapse" id="navbarSupportedContent">
           <div class="form-inline ">
           <ul class="navbar-nav ">
+          
            </div>
             <form class="form-inline " action="/searchresult" method="GET">
             <input name="query" id="query" class="form-control " type="search" placeholder="Search" aria-label="Search" required>
@@ -61,48 +62,41 @@
             </form> 
              
           </div>
-          
+         
           <div class="dropdown collapse navbar-collapse justify-content-end " id="navbarsExampleDefault">
-               <a class="navbar-brand" href="/cart"><img src="{% static 'images/shopping-cart.png' %}" width="30px" >
-                            <span class="badge badge-pill bg-danger">{{request.session.cart.keys|length}}</span>
-                            <span class="sr-only">(current)</span></a>
-                   <a class="navbar-brand"  id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="/login"><img src="{% static 'images/profile.png' %}" width="30px" >
-                    <span class="caret"></span>
-                    </a>
-                <ul class="dropdown-menu " aria-labelledby="dLabel">
-                    
-                     <li class="nav-item navbar-nav ml-auto">
+           <ul class="navbar-links">
+             <li class="nav-item navbar-nav ml-auto">
                         <a class="navbar-brand" href="/cart"><img src="{% static 'images/shopping-cart.png' %}" width="30px" >
                             <span class="badge badge-pill bg-danger">{{request.session.cart.keys|length}}</span>
                             <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="navbar-dropdown">
+                    <a href="#"><img src="{% static 'images/profile.png' %}" width="30px" ></a>
+                    <div class="dropdown">
                         {% if request.session.customer %}
                         
-                        <li class="nav-item ">
-                         <li class="nav-item ">
-                        <a class="navbar-brand" href="/profile"><img src="{% static 'images/profile.png' %}" width="30px" >Profile</a>
-                         </li>
+                        
+                        <a class="navbar-brand" href="{% url 'profile' %}"><img src="{% static 'images/profile.png' %}" width="30px" >Profile</a>
+                        
                         <a class="nav-link" href="/orders"><i class="fas fa-bell"></i>Orders<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item ">
+                       
+                       
                         
                         <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt" style='font-size:25px;color:red'></i><span class="sr-only">(current)</span>Logout</a>
        
-                        </li>
+                      
                          
                         {% else %}
                     
-                         <li class="nav-item">
-                   
                         <a class="navbar-brand" href="/login"><img src="{% static 'images/profile.png' %}pro" width="30px" >login</a>
-                        </li>
+                       
                         {% endif %}
         
-                </ul>
-                </div>
-          
-                </div> 
-        </div>
+                    </div>
+                    </li>
+        </ul>
+
+            
       </nav>
       
     <hr>
@@ -123,59 +117,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="js/addons/rating.js"></script>
 <script>$('.dropdown-toggle').dropdown()</script>
-<script>
-<<<<<<< HEAD
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/62a9fcebb0d10b6f3e7785f8/1g5k07unt';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
-    <!--End of Tawk.to Script-->
-</script>
 
-=======
-    var config = {
-        // replace the publicKey with yours
-        "publicKey": "test_public_key_b6da2d98bc574cb88473342277eb4306",
-        "productIdentity": "1234567890",
-        "productName": "Dragon",
-        "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
-        "paymentPreference": [
-            "KHALTI",
-            "EBANKING",
-            "MOBILE_BANKING",
-            "CONNECT_IPS",
-            "SCT",
-            ],
-        "eventHandler": {
-            onSuccess (payload) {
-                // hit merchant api for initiating verfication
-                console.log(payload);
-            },
-            onError (error) {
-                console.log(error);
-            },
-            onClose () {
-                console.log('widget is closing');
-            }
-        }
-    };
-
-    var checkout = new KhaltiCheckout(config);
-    var btn = document.getElementById("payment-button");
-    btn.onclick = function () {
-        // minimum transaction amount must be 10, i.e 1000 in paisa.
-        checkout.show({amount: 1000});
-    }
-</script>
->>>>>>> 8e751ccb130d8b35ddbb0d69acdfca18ece25be9
 </body>
 
 </html>
