@@ -1,0 +1,42 @@
+{% extends 'admin/admindashboard.html' %}
+
+{% block content %}
+
+{% load static %}
+
+
+<div class="activity">
+    <div class="title">
+        <i class="uil uil-clock-three"></i>
+        <span class="text">Recent Activity</span>
+    </div>
+
+    <div class="activity-data">
+
+        <div class="data names">
+            <span class="data-title">Name</span>
+            {% for c in Customer %}
+            <span class="data-list">{{c.first_name}} {{c.last_name}}</span>
+            {% endfor %}
+            
+        </div>
+        <div class="data email">
+            <span class="data-title">Email</span>
+            {% for c in Customer %}
+            <span class="data-list">{{c.email}}</span>
+            {% endfor %}
+        
+        </div>
+        <div class="data joined">
+            <span class="data-title">Phone</span>
+            {% for c in Customer %}
+            <span class="data-list">{{c.phone}}</span>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+</div>
+
+
+{%endblock content%}

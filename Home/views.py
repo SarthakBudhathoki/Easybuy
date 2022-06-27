@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.views import  View
+from django.contrib.auth.decorators import login_required
 from .forms import *
 from .models import *
 from django.http import JsonResponse
@@ -350,3 +351,33 @@ def password_reset_request(request):
 	password_reset_form = PasswordResetForm()
 	return render(request=request, template_name="Account/password_reset_form.html", context={"password_reset_form":password_reset_form})
 
+
+def admin_dashboard_view(request):
+    user = get_user_model()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+    #bookingcount = Booking.objects.all().count()
+    
+    order = Product.objects.all()
+    data = {
+        'order': order,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+    }
+    return render(request, 'admin/admindashboard.html',data)
+
+def view_customer(request):
+    User = get_user_model()
+    user_data = Customer.objects.all()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+    #bookingcount = Booking.objects.all().count()
+    data = {
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+        'Customer':user_data
+        
+    }
+    return render(request,'admin/view_customer.html',data)
