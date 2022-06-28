@@ -8,6 +8,9 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
     {% block css %}{% endblock %}
     <!-- for khalti -->
     <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script> 
@@ -18,8 +21,8 @@
 </head>
 
 <body style="background: url({% static '' %});">
-
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-image: radial-gradient(circle, #247bfe, #0094ff, #00aaff, #00beff, #3acff9);">
+    {% if request.path != "/admindashboard" and request.path != '/view-customer' %}
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-image: radial-gradient( #247bfe, #015cbb);">
     <a class="navbar-brand" href="{% url 'home' %}"><img src="/static/images/logo.png" height="20px"/></a>
     <button class="navbar-toggler" style=" background-color: white;" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +47,7 @@
                         <a class="navbar-brand" href="/contact">Contact us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="navbar-brand" href="/contact">creator</a>
+                        <a class="navbar-brand" href="/creatorlogin">creator</a>
                     </li>
                 </ul>
         
@@ -100,7 +103,7 @@
       </nav>
       
     <hr>
-
+{% endif %}
    {% comment %} <div style="background-image: linear-gradient(to bottom, #06ade8, #15b6ed, #22bef1, #2ec7f5, #3acff9);"> {% endcomment %}
     {% block content %}
     
@@ -116,6 +119,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="js/addons/rating.js"></script>
+<script src="/static/js/admindashboard.js"></script>
 <script>$('.dropdown-toggle').dropdown()</script>
 
 </body>
