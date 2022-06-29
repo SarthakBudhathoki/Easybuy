@@ -1,6 +1,9 @@
 {% comment %} {% extends 'base.html' %}
 {% load static %}
-{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/admindashboard.css' %}">{% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/0f648027cc.js" crossorigin="anonymous"></script>
+
+    {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/admindashboard.css' %}">  {% endblock %}
 
 
 {% block content %} {% endcomment %}
@@ -15,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="stylesheet" href="/static/css/admindashboard.css"/>
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
 
 </head>
 <nav class="adminnav">
@@ -40,7 +44,7 @@
                 <i class="uil uil-gift"></i>
                 <span class="link-name">Products</span>
             </a></li>
-            <li><a href="#">
+            <li><a href="{% url 'view-blog' %}">
                 <i class="fas fa-blog me-2"></i>
                 <span class="link-name">Blog</span>
             </a></li>

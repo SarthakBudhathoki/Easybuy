@@ -381,3 +381,18 @@ def view_customer(request):
         
     }
     return render(request,'admin/view_customer.html',data)
+
+def view_blog(request):
+    user = get_user_model()
+    single_blog=Blogs.objects.all()
+    usercount = user.objects.all().filter(is_superuser=False).count()
+    productcount = Product.objects.all().count()
+    #bookingcount = Booking.objects.all().count()
+    data = {
+        'single_blog':single_blog,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+        
+    }
+    return render(request,'admin/view_blog.html',data)
