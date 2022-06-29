@@ -166,9 +166,8 @@ def searchresult(request):
     context ={ 'products':products}
     return render(request,'productpage/search.html',context)  
 
-class productpage(View):
-    
-    def post(self , request):
+def productpage(request):
+    if(request.method == 'POST'):
         product = request.POST.get('product')
         remove = request.POST.get('remove')
         cart = request.session.get('cart')
@@ -191,14 +190,11 @@ class productpage(View):
 
         request.session['cart'] = cart
         print('cart' , request.session['cart'])
-        return redirect('productpage')
-
-
-
-    def get(self , request):
-        # print()
+        return redirect('/store')
+    else:
         return HttpResponseRedirect(f'/store{request.get_full_path()[1:]}')
 
+    
 def store(request):
         cart = request.session.get('cart')
         if not cart:
