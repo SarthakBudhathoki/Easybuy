@@ -378,6 +378,7 @@ def view_customer(request):
     }
     return render(request,'admin/view_customer.html',data)
 
+<<<<<<< HEAD
 def view_blog(request):
     user = get_user_model()
     single_blog=Blogs.objects.all()
@@ -392,3 +393,37 @@ def view_blog(request):
         
     }
     return render(request,'admin/view_blog.html',data)
+=======
+#changes made by sarthak for khalti
+def verify_payment(request):
+   data = request.POST
+   product_id = data['product_identity']
+   token = data['token']
+   amount = data['amount']
+
+   url = "https://khalti.com/api/v2/payment/verify/"
+   payload = {
+   "token": token,
+   "amount": amount
+   }
+   headers = {
+   "Authorization": "Key test_secret_key_c406db1d5d0e425a991d6de296d329e3"
+   }
+   
+
+   response = requests.post(url, payload, headers = headers)
+   
+   response_data = json.loads(response.text)
+   status_code = str(response.status_code)
+
+   if status_code == '400':
+      response = JsonResponse({'status':'false','message':response_data['detail']}, status=500)
+      return response
+
+   import pprint 
+   pp = pprint.PrettyPrinter(indent=4)
+   pp.pprint(response_data)
+   
+   return JsonResponse(f"Payment Done !! With IDX. {response_data['user']['idx']}",safe=False)
+
+>>>>>>> ba575462c399f0fe9e95e824575d5234ba3d68d9

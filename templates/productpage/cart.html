@@ -104,8 +104,22 @@
     </div>
   </div>
 
+<!-- #again for khalti-checkout -->
 <script>
-    var config = {
+
+
+  function verifyPayment(payload) {
+      $.ajax({
+          url: "{% url 'verify_payment' %}",
+          type: "POST",
+          data: payload,
+          dataType: 'json',
+          success: function (response) { alert(response) },
+          error: function (error) { alert(error.responseJSON['message']) }
+      });
+  }
+
+  var config = {
         // replace the publicKey with yours
         "publicKey": "test_public_key_b6da2d98bc574cb88473342277eb4306",
         "productIdentity": "1234567890",
@@ -139,4 +153,5 @@
         checkout.show({amount: 1000});
     }
 </script>
+
 {% endblock %}
