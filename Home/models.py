@@ -2,6 +2,7 @@ from django.db import models
 from django.shortcuts import render, redirect,  HttpResponseRedirect
 from django.contrib.auth.hashers import  check_password
 from django.views import View
+from django.contrib.auth.models import User
 import datetime
 
 GENDER_CHOICES = (
@@ -105,11 +106,16 @@ def logout(request):
 
 
 class Customer(models.Model):
+    id=models.AutoField(auto_created=True,primary_key=True)
+    user = models.OneToOneField(User,null=True, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
     email = models.EmailField()
     password = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.first_name
 
     def register(self):
         self.save()
@@ -127,6 +133,24 @@ class Customer(models.Model):
             return True
 
         return  False
+    
+    def __str__(self):
+        return self.first_name
+
+class signupasseller(models.Model):
+    id=models.AutoField(auto_created=True,primary_key=True)
+    firstname=models.CharField(max_length=200)
+    lastname=models.CharField(max_length=200)
+    email = models.CharField(max_length=100)
+    phone=models.CharField(max_length=100)
+    password = models.CharField(max_length=10)
+
+
+    class Meta:
+        db_table="Creator"
+
+    def __str__(self):
+    		return self.firstname
 
 class Order(models.Model):
     product = models.ForeignKey(Product,

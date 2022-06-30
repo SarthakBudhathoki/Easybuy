@@ -10,6 +10,9 @@ from django.contrib import messages
 from django.views import  View
 from django.contrib.auth.decorators import login_required
 from .forms import *
+import json
+from django.contrib.auth.models import User
+
 from .models import *
 from django.http import JsonResponse
 
@@ -28,13 +31,13 @@ def home(request):
 
     return render(request,'home/home.html',)
 
-
+@login_required(login_url="login")
 def profile(request):
-    customer = Customer.objects.all()
-    context  = {
-        'customer': customer,
-      }
-    return render(request,'Account/profile.html',context)
+    email = request.POST.get('email')
+    customer = Customer.get_customer_by_email(email)
+
+
+    return render(request,'Account/profile.html',{'customer': customer})
 
 
 class Signup(View):
@@ -378,7 +381,6 @@ def view_customer(request):
     }
     return render(request,'admin/view_customer.html',data)
 
-<<<<<<< HEAD
 def view_blog(request):
     user = get_user_model()
     single_blog=Blogs.objects.all()
@@ -393,7 +395,7 @@ def view_blog(request):
         
     }
     return render(request,'admin/view_blog.html',data)
-=======
+
 #changes made by sarthak for khalti
 def verify_payment(request):
    data = request.POST
@@ -411,7 +413,7 @@ def verify_payment(request):
    }
    
 
-   response = requests.post(url, payload, headers = headers)
+   response = request.post(url, payload, headers = headers)
    
    response_data = json.loads(response.text)
    status_code = str(response.status_code)
@@ -426,4 +428,19 @@ def verify_payment(request):
    
    return JsonResponse(f"Payment Done !! With IDX. {response_data['user']['idx']}",safe=False)
 
->>>>>>> ba575462c399f0fe9e95e824575d5234ba3d68d9
+def creator(request):
+    print(request)
+    if request.method == 'POST':
+        form = Creator(request.POST or None)
+        if form.is_valid():
+            # if Customer.objects.filter(first_name=request.POST['first_name']).exists():
+            #     messages.error(request,"username already exists")
+            #     return render(request, 'account/signupascreator.html')
+            # else:
+            form.save()
+            user = form.cleaned_data.get('firstname')
+            messages.success(request, "you can now login " + user)
+            print(form)
+        return redirect('/login')
+    
+    return render(request,'Account/signupascreator.html',)
