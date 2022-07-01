@@ -33,6 +33,20 @@
             <span class="data-list">{{c.phone}}</span>
             {% endfor %}
         </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Delete User</th>
+                </tr>
+                
+            </thead>
+            {% for c in Customer %}
+            <tr>
+                <td><a class="btn btn-danger btn-xs" href="/delete_blog/{{single_blog.blog_id}}"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
+            {% endfor %}
+            </tr>
+        </table>
+
 
     </div>
 </div>
