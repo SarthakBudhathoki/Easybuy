@@ -4,16 +4,16 @@
 {% block content %}
 {% load custom_filter %}
 {% load cart %}
-<hr>
-<h4 class="pt-5 d-flex justify-content-center">PRODUCTS<h4>
-<hr>
+
+<h4 class="pt-5 d-flex justify-content-center text-light h1">PRODUCTS<h4>
+
 {% for message in messages  %}
               <p class= "createdmesseges">{{message}}</p>
             {% endfor %}
 <div class="products-container container containbox" >
 <div class="row"> 
     {% for product in products %}
-    <div class="product col-lg-3">
+    <div class="product col-lg-3 pb-5">
         <div class="box-element product">
         <div class = "product-img">
         <img class="thumbnail" src="{{product.image.url}}">

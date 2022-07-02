@@ -26,7 +26,7 @@
     
 </head>
 
-<body style="background-color:#2bd0d0;">
+<body style="background-color:#2cbabd;">
 	   <header>
         <a href="#" class="logo"><img src="/static/images/logo.png" height="20px"/></a>
         
@@ -50,9 +50,24 @@
                 <li><a href="/contact">Contact us</a></li>
               
                           
+           
               {% else %}
               <li><a href="/home">Home</a></a></li>
-                <li><a  href="/store">Shop</a></li>
+              
+                <li><a href="/contact">Contact us</a></li>
+                 <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Shop
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            
+                   <a class="dropdown-item" href="/store" >store</a>
+                  <a class="dropdown-item" href="/categorie">category</a>
+                    
+                  </div>
+                 
+                </li>  
+            
                 <li><a href="{% url 'blog' %}">Blog</a></li>
                  <div class="form-inline my-2 my-lg-0">
 	     	
@@ -64,8 +79,23 @@
               
 
                 <li><a href="/contact">Contact us</a></li>
-                <li><a href="{% url 'creator' %}">creator</a></li>
-                             <form class="form-inline " action="/searchresult" method="GET">
+                 <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Creator
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                   {% if request.session.customer %}
+                   <a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
+                  <a class="dropdown-item" href="/orders">order</a>
+                  <a class="dropdown-item" href="/logout">Log Out</a>
+                    {% else %}
+                    <a class="navbar-brand" href="/logincreator"><img src="{% static 'images/profile.png' %}pro" width="30px" >login</a>
+                    <a class="navbar-brand" href="/creator"><img src="{% static 'images/profile.png' %}pro" width="30px" >signup</a>
+                
+                  </div>
+                  {% endif %}
+                </li>   
+              
                {% endif %}
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -78,7 +108,7 @@
           <a class="dropdown-item" href="/logout">Log Out</a>
           {% else %}
                     
-          <a class="navbar-brand" href="/login/"><img src="{% static 'images/profile.png' %}pro" width="30px" >login</a>
+          <a class="navbar-brand" href="/login"><img src="{% static 'images/profile.png' %}pro" width="30px" >login</a>
                        
         {% endif %}
         </div>

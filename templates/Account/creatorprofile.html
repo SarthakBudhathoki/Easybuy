@@ -1,4 +1,4 @@
-{% extends 'base2.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">{% endblock %}
 {% block content %}
@@ -18,7 +18,7 @@
 <img src="https://i.ibb.co/yNGW4gg/avatar.png" id="blah" alt="Avatar">
 </section>
 
-<h1>{{customers.username}}</h1>
+<h1>{{request.session.}}</h1>
 
 <h3>Web Designer & Developer</h3>
 </td>

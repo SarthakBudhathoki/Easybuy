@@ -30,6 +30,10 @@ urlpatterns = [
     path('view-blog', views.view_blog, name='view-blog'),
     path('verify_payment', views.verify_payment, name='verify_payment'),
     path('creator/', views.creator, name='creator'),
+    path('logincreator', views.logincreator, name='/logincreator'),
+    path('creatordashboard', views.creatordashboard, name='/creatordashboard'),
+    path('logoutcreator', views.logoutcreator , name='logoutcreator'),
+    path('creatorprofile', views.creatorprofile , name='creatorprofile'),
 
 
 

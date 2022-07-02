@@ -57,15 +57,16 @@ nav ul li a {
     margin: 10px 0;
     padding: 10px 20px;
     text-decoration: none;
-    color: #262626;
+    color: #2cbabd;
 }
 
 nav ul li a.active,
 nav ul li a:hover {
-    color: rgb(255, 255, 255);
-    transition: 0.7s;
+    color: rgb(244, 232, 232);
+    transition: 0.5s;
     text-decoration: none;
     border-radius: 10px;
+    background-color: #2cbabd;
 }
 
 .search-box {
@@ -91,7 +92,7 @@ nav ul li a:hover {
 }
 
 .fa-search {
-    font-size: 20px;
+    padding-top: 15px;
     color: black;
 }
 

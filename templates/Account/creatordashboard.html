@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/creatordashboard.css' %}">{% endblock %}
+{% block content %}
+
+ <h1 class="texth1 "><em>Welcome, {{customers.username}}</em></h1>
+<div class="container border border-danger bg-white">
+  <div class="drop-container d-inline ">
+   <form>
+        <div class="drop ">
+            <i class=""><img class="thumbnail" src="{% static 'images/upload.png' %}"></i>
+            <span class="text">
+                Drag and drop your documents, photos, and video here.
+            </span>
+            <div class="or-con">
+                <span class="line"></span>
+                <span class="or">OR</span>
+                <span class="line"></span>
+            </div>
+            <label class="label1" for="file-upload">Browse Files</label>
+            <input type="file" name="image" id="file-upload" class="file-input" multiple />
+        </div>
+        <div class="row-3">
+        	<input class="effect-10" type="text" name="name" placeholder="product name">
+            <span class="focus-bg"></span>
+            <input class="effect-10" type="text" name="price" placeholder="product price">
+            <span class="focus-bg"></span>
+            <div class="custome-select">
+            <select name="category">
+            <option>choose category</option>
+            {% for category in categories %}
+                <option value="{{category.name}}">{{category.name}}</option>
+            {% endfor %}
+             </select>
+            </div> 
+        </div>
+         <div class="row-3">
+        	<textarea class="effect-10" name="description" type="text" placeholder="description"></textarea>
+            <span class="focus-bg"></span>
+        </div>
+      
+        <bottom type="submit"  class="btn btn-success p-3">Upload</bottom>
+         </form>
+    <div>
+   
+    
+
+
+
+<script>
+document.querySelectorAll(".text-input").forEach((element) => {
+    element.addEventListener("blur", (event) => {
+        if (event.target.value != "") {
+            event.target.nextElementSibling.classList.add("filled");
+        } else {
+            event.target.nextElementSibling.classList.remove("filled");
+        }
+    });
+});
+
+</script>
+{% endblock content %}

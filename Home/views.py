@@ -441,6 +441,46 @@ def creator(request):
             user = form.cleaned_data.get('firstname')
             messages.success(request, "you can now login " + user)
             print(form)
-        return redirect('/login')
+        return redirect('/logincreator')
     
     return render(request,'Account/signupascreator.html',)
+
+def logincreator(request):
+    if request.method=='POST':
+        print(request)
+        username=request.POST["username"]
+        password=request.POST["password"]
+     
+        customers=signupasseller.objects.get(username=username,password=password)
+        request.session['username']=request.POST['username']
+        request.session['id']=customers.id
+        return redirect ('/creatordashboard')
+    else:
+        form= signupasseller()
+        print("invalid")
+    return render(request,'Account/creatorlogin.html',)
+
+def creatordashboard(request):
+    customers = signupasseller.objects.get(username=request.session['username'])
+
+    categories = Category.get_all_categories()
+    context  = {
+            'customers': customers,
+            'categories': categories
+            }
+   
+    return render(request,'Account/creatordashboard.html',context)
+
+
+def logoutcreator(request):
+    request.session.clear()
+    return redirect('/logincreator')
+
+
+def creatorprofile(request):
+    customers = signupasseller.objects.get(username=request.session['username'])
+    context  = {
+            'customers': customers
+            
+            }
+    return render(request,'Account/creatorprofile.html',context)

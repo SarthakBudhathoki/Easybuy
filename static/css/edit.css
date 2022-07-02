@@ -71,6 +71,7 @@ img {
 }
 
 .card {
+    width: 100%;
     margin-top: 50px;
     background: #eee;
     padding: 3em;
@@ -111,6 +112,10 @@ img {
 .colors {
     text-transform: UPPERCASE;
     font-weight: bold;
+}
+
+form {
+    display: block;
 }
 
 .colors input {

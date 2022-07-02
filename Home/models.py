@@ -71,39 +71,6 @@ class Blogs(models.Model):
         db_table="blog"
 
 
-class Login(View):
-    return_url = None
-    def get(self , request):
-        Login.return_url = request.GET.get('return_url')
-        return render(request , 'login.html')
-
-    def post(self , request):
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        customer = Customer.get_customer_by_email(email)
-        error_message = None
-        if customer:
-            flag = check_password(password, customer.password)
-            if flag:
-                request.session['customer'] = customer.id
-
-                if Login.return_url:
-                    return HttpResponseRedirect(Login.return_url)
-                else:
-                    Login.return_url = None
-                    return redirect('homepage')
-            else:
-                error_message = 'Email or Password invalid !!'
-        else:
-            error_message = 'Email or Password invalid !!'
-
-        print(email, password)
-        return render(request, 'login.html', {'error': error_message})
-
-def logout(request):
-    request.session.clear()
-    return redirect('login')
-
 
 class Customer(models.Model):
     id=models.AutoField(auto_created=True,primary_key=True)
@@ -139,10 +106,12 @@ class Customer(models.Model):
 
 class signupasseller(models.Model):
     id=models.AutoField(auto_created=True,primary_key=True)
+    username=models.CharField(max_length=200)
     firstname=models.CharField(max_length=200)
     lastname=models.CharField(max_length=200)
+    phone=models.CharField(max_length=200)
+    address=models.CharField(max_length=200)
     email = models.CharField(max_length=100)
-    phone=models.CharField(max_length=100)
     password = models.CharField(max_length=10)
 
 
@@ -150,7 +119,7 @@ class signupasseller(models.Model):
         db_table="Creator"
 
     def __str__(self):
-    		return self.firstname
+    		return self.username
 
 class Order(models.Model):
     product = models.ForeignKey(Product,
