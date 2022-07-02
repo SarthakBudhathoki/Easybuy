@@ -384,7 +384,7 @@ def view_customer(request):
 def view_blog(request):
     user = get_user_model()
     single_blog=Blogs.objects.all()
-    usercount = user.objects.all().filter(is_superuser=False).count()
+    usercount = Customer.objects.all().count()
     productcount = Product.objects.all().count()
     #bookingcount = Booking.objects.all().count()
     data = {
@@ -395,6 +395,83 @@ def view_blog(request):
         
     }
     return render(request,'admin/view_blog.html',data)
+
+def blogform(request):
+
+    print(request.FILES)
+    usercount = Customer.objects.all().count()
+    #bookingcount = Booking.objects.all().count()
+    productcount = Product.objects.all().count()
+
+    data={
+            'usercount':usercount,
+            #'bookingcount':bookingcount,
+            'productcount':productcount,     
+        }
+
+
+ 
+
+    if request.method=="POST":
+
+        blogs=BlogForm(request.POST,request.FILES)
+        
+       
+
+        blogs.save()
+        return redirect ("blog")
+
+    else:
+
+        blogs=BlogForm()
+
+     
+
+    return render (request,"admin/blog_form.html",data)
+
+def view_product(request):
+    user = get_user_model()
+    product=Product.objects.all()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+    #bookingcount = Booking.objects.all().count()
+    data = {
+        'product':product,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+        
+    }
+    return render(request,'admin/view_product.html',data)
+
+def productform(request):
+    product=Product.objects.all()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+
+    print(request.FILES)
+    data = {
+        'product':product,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+        
+    }
+
+    if request.method=="POST":
+
+        product=ProductForm(request.POST,request.FILES)
+
+        product.save()
+        return redirect ("store")
+
+    else:
+
+        product=ProductForm()
+
+     
+
+    return render (request,"admin/product_form.html",data)
 
 #changes made by sarthak for khalti
 def verify_payment(request):
@@ -441,6 +518,46 @@ def creator(request):
             user = form.cleaned_data.get('firstname')
             messages.success(request, "you can now login " + user)
             print(form)
-        return redirect('/login')
+        return redirect('/logincreator')
     
     return render(request,'Account/signupascreator.html',)
+
+def logincreator(request):
+    if request.method=='POST':
+        print(request)
+        username=request.POST["username"]
+        password=request.POST["password"]
+     
+        customers=signupasseller.objects.get(username=username,password=password)
+        request.session['username']=request.POST['username']
+        request.session['id']=customers.id
+        return redirect ('/creatordashboard')
+    else:
+        form= signupasseller()
+        print("invalid")
+    return render(request,'Account/creatorlogin.html',)
+
+def creatordashboard(request):
+    customers = signupasseller.objects.get(username=request.session['username'])
+
+    categories = Category.get_all_categories()
+    context  = {
+            'customers': customers,
+            'categories': categories
+            }
+   
+    return render(request,'Account/creatordashboard.html',context)
+
+
+def logoutcreator(request):
+    request.session.clear()
+    return redirect('/logincreator')
+
+
+def creatorprofile(request):
+    customers = signupasseller.objects.get(username=request.session['username'])
+    context  = {
+            'customers': customers
+            
+            }
+    return render(request,'Account/creatorprofile.html',context)

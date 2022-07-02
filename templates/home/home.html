@@ -11,7 +11,7 @@
        We provide the best platform to design clothes and get them delivered in your doorsteps.<br>
                     You can also choose from already available designs and customize them.
       </p>
-        <button class=" btn-name">Get Started</button>
+        <button class=" btn-name btn btn-outline-light">Get Started</button>
     </div>
     </div>
     <div class="landing-image">
@@ -21,23 +21,26 @@
 <div class="pb-5 pt-5"></div>
 <div class="pb-5"></div>
 
-<section class="course pt-5">
+<section class="course pt-5 pb-5">
             <h1>Our features</h1>
             <p>You can be sure of these things in our products.</p>
-            <div class="row">
-                <div class="course-col">
-                    <h3>Quality</h3>
-                    <p>We provide the best in class materials for the clothes at the most affordable price.
+            <div class="row pl-5 pr-5">
+                <div class="course-col pl-5">
+                   <img src="{% static 'images/quality.png' %}">
+                    <h3 class="text-light">Quality</h3>
+                    <p class="text-light">We provide the best in class materials for the clothes at the most affordable price.
                     </p>
                 </div>
                 <div class="course-col">
-                    <h3>Custom Size</h3>
-                    <p>People can make clothes of custom size no matter thier size we will make it.
+                <img src="{% static 'images/customsize.png' %}">
+                    <h3 class="text-light">Custom Size</h3>
+                    <p class="text-light">People can make clothes of custom size no matter thier size we will make it.
                     </p>
                 </div>
                 <div class="course-col">
-                    <h3>Best Price</h3>
-                    <p>Our prices are just unmatched for other website regarding the products and service.
+                <img src="{% static 'images/bestprice.png' %}">  
+                    <h3 class="text-light">Best Price</h3>
+                    <p class="text-light">Our prices are just unmatched for other website regarding the products and service.
                     </p>
                 </div>
             </div>
@@ -45,34 +48,42 @@
          </section>
 
       
-
-         <section class="campus">
-            <h1 class="text-light"> Our Products </h1>
+<div class="container campus">
+             <h1 class="text-light"> Our Products </h1>
             <p class="text-light">We offer these products.</p>
 
-            <div class="row pl-5">
-                <div class="campus-col">
+        <div class="grid">
+            <div class="card">
+                <div class="card_img">
                     <img src="{% static 'images/ss1.jfif' %}">
-                    <div class="layer">
-                        <h3>Sweatshirt</h3>
-                    </div>
                 </div>
-                <div class="campus-col">
-                    <img src="{% static 'images/hs1.jfif' %}">
-                    <div class="layer">
-                        <h3>Shirt</h3>
-                    </div>
-                </div>
-                <div class="campus-col ">
-                    <img src="{% static 'images/ts1.jfif' %}">
-                    <div class="layer">
-                        <h3>T-shirt</h3>
-                    </div>
+                <div class="card_body">
+                    <h2 class="card_title">Sweatshirt</h2>
+                    
                 </div>
             </div>
-            
-         </section>
+            <div class="card">
+                <div class="card_img">
+                    <img src="{% static 'images/hs1.jfif' %}">
+                </div>
+                <div class="card_body">
+                    <h2 class="card_title">shirt</h2>
 
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_img">
+                  <img src="{% static 'images/ts1.jfif' %}">
+                </div>
+                <div class="card_body">
+                    <h2 class="card_title">T-shirt</h2>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+        
 
          <!-----------Facilities------>
 
@@ -199,11 +210,7 @@
 						<a href="">Read More</a>
 					</div>
 				</div>
-				<div class="social">
-					<a href=""><i class="fab fa-facebook-f"></i></a>
-					<a href=""><i class="fab fa-twitter"></i></a>
-					<a href=""><i class="fab fa-instagram"></i></a>
-				</div>
+				
 			</div>
 			<div class="image-section">
 				<img src= "{% static 'images/online-shopping.png' %}">

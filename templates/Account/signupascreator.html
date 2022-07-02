@@ -17,13 +17,17 @@
               <form action="" method="POST" class="sign-in-form">
 				 {% csrf_token %}
                 <div class="form-outline mb-4">
-                  <input type="text" name="firstname" placeholder="Firstname" id="form3Example1cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example1cg">Your Name</label>
+                  <input type="text"name="username" placeholder="Username" id="form3Example1cg" class="form-control form-control-lg" />
+                  <label class="form-label" for="form3Example1cg">Your UserName</label>
+                </div>
+                 <div class="form-outline mb-4">
+                  <input type="text"name="firstname" placeholder="firstname" id="form3Example1cg" class="form-control form-control-lg" />
+                  <label class="form-label" for="form3Example1cg">Firstname</label>
                 </div>
 				
 				<div class="form-outline mb-4">
                   <input type="text" name="lastname" placeholder="lastname" id="form3Example1cg" class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example1cg">Your Name</label>
+                  <label class="form-label" for="form3Example1cg">lastName</label>
                 </div>
 
                 <div class="form-outline mb-4">
@@ -31,8 +35,12 @@
                   <label class="form-label"  name="email" for="form3Example3cg">Your Email</label>
                 </div>
 				<div class="form-outline mb-4">
-                  <input type="text" name="phone" placeholder="Phone"id="form3Example3cg" class="form-control form-control-lg" />
-                  <label class="form-label"  name="email" for="form3Example3cg">Your Email</label>
+                  <input type="text" name="phone" placeholder="Phone" id="form3Example3cg" class="form-control form-control-lg" />
+                  <label class="form-label"  name="phone" for="form3Example3cg">Phone Number</label>
+                </div>
+        	<div class="form-outline mb-4">
+                  <input type="text" name="address" placeholder="address"  id="form3Example3cg" class="form-control form-control-lg" />
+                  <label class="form-label"  name="address" for="form3Example3cg">Address</label>
                 </div>
 
                 <div class="form-outline mb-4">
@@ -43,17 +51,10 @@
                 <div class="form-outline mb-4">
                   <input type="password"   placeholder="confirmPassword" id="form3Example4cdg" class="form-control form-control-lg" />
                   <label class="form-label" for="form3Example4cdg">Repeat your password</label>
+                  
                 </div>
-
-
-
-                
-                    <button  type="submit" value="register" class="btn btn-success ">Register</button>
-             
-
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="/login"
-                    class="fw-bold text-body"><u>Login here</u></a></p>
-
+                <button  type="submit" value="register" class="justify-content-center btn btn-info ">Register</button>
+               
               </form>
 
             </div>

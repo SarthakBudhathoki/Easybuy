@@ -1,16 +1,5 @@
     /* color:  red#ec1c24, black#212d31, grey#343a40, white#eee  */
     
-    * {
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', sans-serif;
-    }
-    
-    html {
-        font-size: 62.5%;
-        overflow-x: hidden;
-    }
-    
     body {
         background: #eee;
     }
@@ -26,7 +15,7 @@
     }
     
     .content h2 {
-        color: #fff;
+        color: rgb(23, 22, 22);
         font-size: 8em;
         position: absolute;
         transform: translate(-50%, -50%);
@@ -34,11 +23,11 @@
     
     .content h2:nth-child(1) {
         color: transparent;
-        -webkit-text-stroke: 2px #03a9f4;
+        -webkit-text-stroke: 2px #111313;
     }
     
     .content h2:nth-child(2) {
-        color: #03a9f4;
+        color: #e3eef3;
         animation: animate 4s ease-in-out infinite;
     }
     

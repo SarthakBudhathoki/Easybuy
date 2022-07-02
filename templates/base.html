@@ -5,9 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+    	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/contact.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
@@ -18,93 +23,60 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
 </head>
 
-<body style="background: url({% static '' %});">
-    {% if request.path != "/admindashboard" and request.path != '/view-customer' %}
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-image: radial-gradient( #247bfe, #015cbb);">
-    <a class="navbar-brand" href="{% url 'home' %}"><img src="/static/images/logo.png" height="20px"/></a>
-    <button class="navbar-toggler" style=" background-color: white;" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-    <div class="collapse navbar-collapse" id="navbarNav" >
-                <ul class="navbar-nav">
-                
-                    <li class="nav-item `">
-                        <a class="navbar-brand " href="/home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navbar-brand waves-effect" href="/store">Shop</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="/categorie">Category</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="{% url 'blog' %}">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="/contact">Contact us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="navbar-brand" href="/creatorlogin">creator</a>
-                    </li>
-                </ul>
+<body style="background-color:#2cbabd;">
+	   <header>
+        <a href="#" class="logo"><img src="/static/images/logo.png" height="20px"/></a>
         
-              
-                </div> 
         
-        <div class="pl-5 collapse navbar-collapse" id="navbarSupportedContent">
-          <div class="form-inline ">
-          <ul class="navbar-nav ">
-          
-           </div>
-            <form class="form-inline " action="/searchresult" method="GET">
-            <input name="query" id="query" class="form-control " type="search" placeholder="Search" aria-label="Search" required>
-            <button class="btn btn-light my-3 my-sm-2" type="submit"><i class="fas fa-search"></i></button>
-            </form> 
+        <div class="mean-toggle"></div>
+        <nav>
+            <ul>
+                <li><a href="/">uploaded product</a></a></li>
              
-          </div>
-         
-          <div class="dropdown collapse navbar-collapse justify-content-end " id="navbarsExampleDefault">
-           <ul class="navbar-links">
-             <li class="nav-item navbar-nav ml-auto">
-                        <a class="navbar-brand" href="/cart"><img src="{% static 'images/shopping-cart.png' %}" width="30px" >
-                            <span class="badge badge-pill bg-danger">{{request.session.cart.keys|length}}</span>
-                            <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="navbar-dropdown">
-                    <a href="#"><img src="{% static 'images/profile.png' %}" width="30px" ></a>
-                    <div class="dropdown">
-                        {% if request.session.customer %}
-                        
-                        
-                        <a class="navbar-brand" href="{% url 'profile' %}"><img src="{% static 'images/profile.png' %}" width="30px" >Profile</a>
-                        
-                        <a class="nav-link" href="/orders"><i class="fas fa-bell"></i>Orders<span class="sr-only">(current)</span></a>
-                       
-                       
-                        
-                        <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt" style='font-size:25px;color:red'></i><span class="sr-only">(current)</span>Logout</a>
-       
-                      
-                         
-                        {% else %}
-                    
-                        <a class="navbar-brand" href="/login"><img src="{% static 'images/profile.png' %}pro" width="30px" >login</a>
-                       
-                        {% endif %}
+                 <div class="form-inline my-2 my-lg-0"> 
+           
+              
+               
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg" width="40" height="40" class="rounded-circle">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                 <a class="dropdown-item" href="{% url 'creatorprofile' %}">Profile</a>
+                  <a class="dropdown-item" href="/logoutcreator">Log Out</a>
+                
+                </li>   
         
-                    </div>
-                    </li>
-        </ul>
+        </nav>
+         <form class="form-inline " action="/searchresult" method="GET">
+                <div class="search-box">
 
-            
-      </nav>
-      
-    <hr>
-{% endif %}
-   {% comment %} <div style="background-image: linear-gradient(to bottom, #06ade8, #15b6ed, #22bef1, #2ec7f5, #3acff9);"> {% endcomment %}
+                <form class="form-inline " action="/searchresult" method="GET">
+                <input class="search-input" width="40px;" name="query" id="query" class="form-control " type="search" placeholder="Search" aria-label="Search" required>
+                <i class="fas fa-search "></i>
+                </form>
+        <div class="clear"></div>
+       
+    </header>
+    
+     <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous">
+</script>
+  <script type="text/javascript">
+      $(document).ready(function()
+      {
+          $('.mean-toggle').click(function()
+        {
+              $('.mean-toggle').toggleClass('active')
+              $('nav').toggleClass('active')
+        })
+      })
+    </script>
+
     {% block content %}
     
    
@@ -120,7 +92,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="js/addons/rating.js"></script>
 <script src="/static/js/admindashboard.js"></script>
+<script type="text/javascript" src="{% static '/static/js/cart.js' %}"></script>
 <script>$('.dropdown-toggle').dropdown()</script>
+
 
 </body>
 
