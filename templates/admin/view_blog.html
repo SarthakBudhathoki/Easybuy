@@ -22,6 +22,7 @@
         <i class="fas fa-blog me-2">    </i>
         <span class="text">Blogs</span>
     </div>
+    <a class="btn btn-primary btn-xs" href="{% url 'blogform' %}"><span class="glyphicon glyphicon-trash"></span>Add New Blog</a>
 
     <table class="table table-hover" id="dev-table">
         <thead>
@@ -38,7 +39,6 @@
             <td>{{single_blog.blog_name}}</td>
             <td>{{single_blog.blog_details}}</td>
             <td><img src="/media/{{single_blog.blog_image}}" style="max-width: 150px;" height="50px"></td>
-            <td><a class="btn btn-primary btn-xs" href="{% url 'blogform' %}"><span class="glyphicon glyphicon-trash"></span>add</a></td>
             <td><a class="btn btn-success btn-xs" href="/edit_blog/{{single_blog.blog_id}}"><span class="glyphicon glyphicon-trash"></span>edit</a></td>
             <td><a class="btn btn-danger btn-xs" href="/delete_blog/{{single_blog.blog_id}}"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
 

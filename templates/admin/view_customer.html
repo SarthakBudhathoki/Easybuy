@@ -42,7 +42,7 @@
             </thead>
             {% for c in Customer %}
             <tr>
-                <td><a class="btn btn-danger btn-xs" href="/delete_blog/{{single_blog.blog_id}}"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
+                <td><a class="btn btn-danger btn-xs" href="/delete_customer/{{c.id}}"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
             {% endfor %}
             </tr>
         </table>

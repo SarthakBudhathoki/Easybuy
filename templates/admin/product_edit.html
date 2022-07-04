@@ -663,8 +663,9 @@ input[type="checkbox"]:focus {
           </div>
           <div class="row tm-edit-product-row">
             <div class="col-xl-6 col-lg-6 col-md-12">
-                <form class="tm-edit-product-form" action="" enctype="multipart/form-data" method="POST">
+                <form class="tm-edit-product-form" action="/update_product/{{product.id}}" enctype="multipart/form-data" method="POST">
                     {% csrf_token %}
+
                 <div class="form-group mb-3">
                   <label
                     for="name"
@@ -674,6 +675,7 @@ input[type="checkbox"]:focus {
                     id="name"
                     name="name"
                     type="text"
+                    value="{{product.name}}"
                     class="form-control validate"
                     required
                   />
@@ -686,6 +688,7 @@ input[type="checkbox"]:focus {
                   <textarea
                     class="form-control validate"
                     name="description"
+                    value="{{product.description}}"
                     rows="3"
                     required
                   ></textarea>
@@ -715,11 +718,13 @@ input[type="checkbox"]:focus {
                         <input
                           id="expire_date"
                           name="price"
+                          value="{{product.price}}"
                           type="text"
                           class="form-control validate"
                           data-large-mode="true"
                         />
                       </div>
+                      
                 </div>
                 
             </div>
@@ -731,19 +736,18 @@ input[type="checkbox"]:focus {
                 ></i>
               </div>
               <div class="custom-file mt-3 mb-3">
-                <input id="fileInput" type="file" name="image" style="display:none;" />
+                <input id="fileInput" type="file" style="display:none;" />
                 <input
                   type="button"
                   class="btn btn-primary btn-block mx-auto"
-                  
-                  value="Upload a image"
+                  name="image"
+                  value="UPLOAD PRODUCT IMAGE"
                   onclick="document.getElementById('fileInput').click();"
                 />
-                
               </div>
             </div>
             <div class="col-12">
-              <button type="submit" value="submit" class="btn btn-primary btn-block text-uppercase">Add Product  </button>
+              <button type="submit" value="update" class="btn btn-primary btn-block text-uppercase">Update Product</button>
             </div>
           </form>
           </div>
