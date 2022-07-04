@@ -384,7 +384,7 @@ def view_customer(request):
 def view_blog(request):
     user = get_user_model()
     single_blog=Blogs.objects.all()
-    usercount = user.objects.all().filter(is_superuser=False).count()
+    usercount = Customer.objects.all().count()
     productcount = Product.objects.all().count()
     #bookingcount = Booking.objects.all().count()
     data = {
@@ -395,6 +395,83 @@ def view_blog(request):
         
     }
     return render(request,'admin/view_blog.html',data)
+
+def blogform(request):
+
+    print(request.FILES)
+    usercount = Customer.objects.all().count()
+    #bookingcount = Booking.objects.all().count()
+    productcount = Product.objects.all().count()
+
+    data={
+            'usercount':usercount,
+            #'bookingcount':bookingcount,
+            'productcount':productcount,     
+        }
+
+
+ 
+
+    if request.method=="POST":
+
+        blogs=BlogForm(request.POST,request.FILES)
+        
+       
+
+        blogs.save()
+        return redirect ("blog")
+
+    else:
+
+        blogs=BlogForm()
+
+     
+
+    return render (request,"admin/blog_form.html",data)
+
+def view_product(request):
+    user = get_user_model()
+    product=Product.objects.all()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+    #bookingcount = Booking.objects.all().count()
+    data = {
+        'product':product,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+        
+    }
+    return render(request,'admin/view_product.html',data)
+
+def productform(request):
+    product=Product.objects.all()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+
+    print(request.FILES)
+    data = {
+        'product':product,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+        
+    }
+
+    if request.method=="POST":
+
+        product=ProductForm(request.POST,request.FILES)
+
+        product.save()
+        return redirect ("store")
+
+    else:
+
+        product=ProductForm()
+
+     
+
+    return render (request,"admin/product_form.html",data)
 
 #changes made by sarthak for khalti
 def verify_payment(request):

@@ -19,26 +19,30 @@
 
 <div class="activity">
     <div class="title">
-        <i class="fas fa-blog me-2">    </i>
-        <span class="text">Blogs</span>
+        <i class="fas fa-gift me-2">    </i>
+        <span class="text">Products</span>
     </div>
 
     <table class="table table-hover" id="dev-table">
         <thead>
             <tr>
-                <th>Blog ID</th>
-                <th>Blog Name</th>
-                <th>Bog Description</th>
-                <th>Blog image</th>
+                <th>Product ID</th>
+                <th>Product Category</th>
+                <th>Product Name</th>
+                <th>Product Details</th>
+                <th>Product Price</th>
+                <th>Product image</th>
             </tr>
         </thead>
-        {% for single_blog in single_blog %}
+        {% for p in product %}
         <tr>
-            <td> {{single_blog.blog_id}}</td>
-            <td>{{single_blog.blog_name}}</td>
-            <td>{{single_blog.blog_details}}</td>
+            <td> {{p.id}}</td>
+            <td> {{p.category}}</td>
+            <td>{{p.name}}</td> 
+            <td>{{p.description}}</td>
+            <td>{{p.price}}</td>
             <td><img src="/media/{{single_blog.blog_image}}" style="max-width: 150px;" height="50px"></td>
-            <td><a class="btn btn-primary btn-xs" href="{% url 'blogform' %}"><span class="glyphicon glyphicon-trash"></span>add</a></td>
+            <td><a class="btn btn-primary btn-xs" href="{% url 'productform' %}"><span class="glyphicon glyphicon-trash"></span>add</a></td>
             <td><a class="btn btn-success btn-xs" href="/edit_blog/{{single_blog.blog_id}}"><span class="glyphicon glyphicon-trash"></span>edit</a></td>
             <td><a class="btn btn-danger btn-xs" href="/delete_blog/{{single_blog.blog_id}}"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
 
