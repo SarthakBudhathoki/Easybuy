@@ -441,6 +441,7 @@ def creator(request):
             user = form.cleaned_data.get('firstname')
             messages.success(request, "you can now login " + user)
             print(form)
+            
         return redirect('/logincreator')
     
     return render(request,'Account/signupascreator.html',)
@@ -462,12 +463,20 @@ def logincreator(request):
 
 def creatordashboard(request):
     customers = signupasseller.objects.get(username=request.session['username'])
-
     categories = Category.get_all_categories()
+  
+
+    form = Products(request.POST)
     context  = {
+            'form': form,
             'customers': customers,
             'categories': categories
             }
+    if request.method =='POST':
+        form = Products(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/creatordashboard')   
    
     return render(request,'Account/creatordashboard.html',context)
 
