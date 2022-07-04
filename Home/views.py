@@ -1,17 +1,43 @@
 from itertools import product
 from multiprocessing import context
-from django.shortcuts import redirect, render, HttpResponseRedirect
+from django.shortcuts import redirect, render, HttpResponseRedirect, HttpResponse
 from .models import Product, Blogs
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import   get_user_model
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.views import  View
+from django.contrib.auth.decorators import login_required
+from .forms import *
+import json
+from django.contrib.auth.models import User
+
 from .models import *
+from django.http import JsonResponse
+
+
+# For reset password
+from django.core.mail import send_mail, BadHeaderError
+from django.contrib.auth.forms import PasswordResetForm
+from django.template.loader import render_to_string
+from django.db.models.query_utils import Q
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+
 
 def home(request):
 
     return render(request,'home/home.html',)
+
+@login_required(login_url="login")
+def profile(request):
+    email = request.POST.get('email')
+    customer = Customer.get_customer_by_email(email)
+
+
+    return render(request,'Account/profile.html',{'customer': customer})
 
 
 class Signup(View):
@@ -143,9 +169,8 @@ def searchresult(request):
     context ={ 'products':products}
     return render(request,'productpage/search.html',context)  
 
-class productpage(View):
-    
-    def post(self , request):
+def productpage(request):
+    if(request.method == 'POST'):
         product = request.POST.get('product')
         remove = request.POST.get('remove')
         cart = request.session.get('cart')
@@ -168,20 +193,18 @@ class productpage(View):
 
         request.session['cart'] = cart
         print('cart' , request.session['cart'])
-        return redirect('productpage')
-
-
-
-    def get(self , request):
-        # print()
+        return redirect('/store')
+    else:
         return HttpResponseRedirect(f'/store{request.get_full_path()[1:]}')
 
+    
 def store(request):
         cart = request.session.get('cart')
         if not cart:
             request.session['cart'] = {}
         products = None
         categories = Category.get_all_categories()
+        customer = Customer.objects.all()
         categoryID = request.GET.get('category')
         if categoryID:
             products = Product.get_all_products_by_categoryid(categoryID)
@@ -191,6 +214,7 @@ def store(request):
         data = {}
         data['products'] = products
         data['categories'] = categories
+        
 
         print('you are : ', request.session.get('email'))
         return render(request, 'productpage/productpage.html', data)
@@ -203,13 +227,29 @@ class Cart(View):
         return render(request , 'productpage/cart.html' , {'products' : products} )
 
 def edit(request, id):
-   numbers = Product.objects.get(id=id)
-   products = Product.objects.all()
-   context  = {
+    numbers = Product.objects.get(id=id)
+    products = Product.objects.all()
+    context  = {
         'products': products,'numbers' : numbers
       }
+    print(request)
+    if request.method =='POST':
+        form = orderform(request.POST)
+        if form.is_valid(): 
+                form.save()
+                user = form.cleaned_data.get('username')
+                messages.success(request,"your order has been placed " + user)
+                print(form)
+        else:
+            print(form)
+            messages.success(request,"your order could not be placed " )
+        return redirect('/')     
+                
 
-   return render(request,'productpage/edit.html',context)
+    return render(request,'productpage/edit.html',context)
+
+
+
 
 def contact(request):
     return render(request, 'contact/contact.html')
@@ -260,7 +300,7 @@ def showblog(request):
     user = get_user_model()
     blogs=Blogs.objects.all()
 
-    return render (request,"blog/blog.html",{'blogs':blogs,})
+    return render (request,"blog/blogpage.html",{'blogs':blogs,})
 
 def blog_detail(request, id):
     single_blog = get_object_or_404(Blogs, pk=id)
@@ -282,5 +322,242 @@ def blog_detail(request, id):
     return render(request, 'blog/blog_detail.html', data)
 
 
+def password_reset_request(request):
+	if request.method == "POST":
+		password_reset_form = PasswordResetForm(request.POST)
+		if password_reset_form.is_valid():
+			data = password_reset_form.cleaned_data['email']
+			associated_users = User.objects.filter(Q(email=data))
+			if associated_users.exists():
+				for user in associated_users:
+					subject = "Password Reset Requested"
+					email_template_name = "Account/password_reset_email.txt"
+					c = {
+					"email":user.email,
+					'domain':'127.0.0.1:8000',
+					'site_name': 'Website',
+					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
+					"user": user,
+					'token': default_token_generator.make_token(user),
+					'protocol': 'http',
+					}
+					email = render_to_string(email_template_name, c)
+					try:
+						send_mail(subject, email, 'sthronesh11@gmail.com' , [user.email], fail_silently=False)
+					except BadHeaderError:
+						return HttpResponse('Invalid header found.')
+					return redirect ("/password_reset/done/")
+	password_reset_form = PasswordResetForm()
+	return render(request=request, template_name="Account/password_reset_form.html", context={"password_reset_form":password_reset_form})
+
+
+def admin_dashboard_view(request):
+    user = get_user_model()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+    #bookingcount = Booking.objects.all().count()
+    
+    order = Product.objects.all()
+    data = {
+        'order': order,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+    }
+    return render(request, 'admin/admindashboard.html',data)
+
+def view_customer(request):
+    User = get_user_model()
+    user_data = Customer.objects.all()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+    #bookingcount = Booking.objects.all().count()
+    data = {
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+        'Customer':user_data
+        
+    }
+    return render(request,'admin/view_customer.html',data)
+
+def view_blog(request):
+    user = get_user_model()
+    single_blog=Blogs.objects.all()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+    #bookingcount = Booking.objects.all().count()
+    data = {
+        'single_blog':single_blog,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+        
+    }
+    return render(request,'admin/view_blog.html',data)
+
+def blogform(request):
+
+    print(request.FILES)
+    usercount = Customer.objects.all().count()
+    #bookingcount = Booking.objects.all().count()
+    productcount = Product.objects.all().count()
+
+    data={
+            'usercount':usercount,
+            #'bookingcount':bookingcount,
+            'productcount':productcount,     
+        }
+
+
+ 
+
+    if request.method=="POST":
+
+        blogs=BlogForm(request.POST,request.FILES)
+        
+       
+
+        blogs.save()
+        return redirect ("blog")
+
+    else:
+
+        blogs=BlogForm()
+
+     
+
+    return render (request,"admin/blog_form.html",data)
+
+def view_product(request):
+    user = get_user_model()
+    product=Product.objects.all()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+    #bookingcount = Booking.objects.all().count()
+    data = {
+        'product':product,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+        
+    }
+    return render(request,'admin/view_product.html',data)
+
+def productform(request):
+    product=Product.objects.all()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+
+    print(request.FILES)
+    data = {
+        'product':product,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+        
+    }
+
+    if request.method=="POST":
+
+        product=ProductForm(request.POST,request.FILES)
+
+        product.save()
+        return redirect ("store")
+
+    else:
+
+        product=ProductForm()
+
+     
+
+    return render (request,"admin/product_form.html",data)
+
+#changes made by sarthak for khalti
+def verify_payment(request):
+   data = request.POST
+   product_id = data['product_identity']
+   token = data['token']
+   amount = data['amount']
+
+   url = "https://khalti.com/api/v2/payment/verify/"
+   payload = {
+   "token": token,
+   "amount": amount
+   }
+   headers = {
+   "Authorization": "Key test_secret_key_c406db1d5d0e425a991d6de296d329e3"
+   }
    
+
+   response = request.post(url, payload, headers = headers)
    
+   response_data = json.loads(response.text)
+   status_code = str(response.status_code)
+
+   if status_code == '400':
+      response = JsonResponse({'status':'false','message':response_data['detail']}, status=500)
+      return response
+
+   import pprint 
+   pp = pprint.PrettyPrinter(indent=4)
+   pp.pprint(response_data)
+   
+   return JsonResponse(f"Payment Done !! With IDX. {response_data['user']['idx']}",safe=False)
+
+def creator(request):
+    print(request)
+    if request.method == 'POST':
+        form = Creator(request.POST or None)
+        if form.is_valid():
+            # if Customer.objects.filter(first_name=request.POST['first_name']).exists():
+            #     messages.error(request,"username already exists")
+            #     return render(request, 'account/signupascreator.html')
+            # else:
+            form.save()
+            user = form.cleaned_data.get('firstname')
+            messages.success(request, "you can now login " + user)
+            print(form)
+        return redirect('/logincreator')
+    
+    return render(request,'Account/signupascreator.html',)
+
+def logincreator(request):
+    if request.method=='POST':
+        print(request)
+        username=request.POST["username"]
+        password=request.POST["password"]
+     
+        customers=signupasseller.objects.get(username=username,password=password)
+        request.session['username']=request.POST['username']
+        request.session['id']=customers.id
+        return redirect ('/creatordashboard')
+    else:
+        form= signupasseller()
+        print("invalid")
+    return render(request,'Account/creatorlogin.html',)
+
+def creatordashboard(request):
+    customers = signupasseller.objects.get(username=request.session['username'])
+
+    categories = Category.get_all_categories()
+    context  = {
+            'customers': customers,
+            'categories': categories
+            }
+   
+    return render(request,'Account/creatordashboard.html',context)
+
+
+def logoutcreator(request):
+    request.session.clear()
+    return redirect('/logincreator')
+
+
+def creatorprofile(request):
+    customers = signupasseller.objects.get(username=request.session['username'])
+    context  = {
+            'customers': customers
+            
+            }
+    return render(request,'Account/creatorprofile.html',context)

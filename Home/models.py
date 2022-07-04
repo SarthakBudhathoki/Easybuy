@@ -2,11 +2,17 @@ from django.db import models
 from django.shortcuts import render, redirect,  HttpResponseRedirect
 from django.contrib.auth.hashers import  check_password
 from django.views import View
+from django.contrib.auth.models import User
 import datetime
 
+GENDER_CHOICES = (
+    ('M', 'Male'),
+    ('F', 'Female'),
+)
 
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     slug = models.SlugField(max_length=200, unique=True)
     class Meta:
         ordering = ('name',)
@@ -19,10 +25,8 @@ class Category(models.Model):
     def get_all_categories():
         return Category.objects.all()
 
-
     def __str__(self):
         return self.name
-
     
 class Product(models.Model):
     id=models.AutoField(auto_created=True,primary_key=True)
@@ -66,46 +70,18 @@ class Blogs(models.Model):
         db_table="blog"
 
 
-class Login(View):
-    return_url = None
-    def get(self , request):
-        Login.return_url = request.GET.get('return_url')
-        return render(request , 'login.html')
-
-    def post(self , request):
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        customer = Customer.get_customer_by_email(email)
-        error_message = None
-        if customer:
-            flag = check_password(password, customer.password)
-            if flag:
-                request.session['customer'] = customer.id
-
-                if Login.return_url:
-                    return HttpResponseRedirect(Login.return_url)
-                else:
-                    Login.return_url = None
-                    return redirect('homepage')
-            else:
-                error_message = 'Email or Password invalid !!'
-        else:
-            error_message = 'Email or Password invalid !!'
-
-        print(email, password)
-        return render(request, 'login.html', {'error': error_message})
-
-def logout(request):
-    request.session.clear()
-    return redirect('login')
-
 
 class Customer(models.Model):
+    id=models.AutoField(auto_created=True,primary_key=True)
+    user = models.OneToOneField(User,null=True, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
     email = models.EmailField()
     password = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.first_name
 
     def register(self):
         self.save()
@@ -123,6 +99,26 @@ class Customer(models.Model):
             return True
 
         return  False
+    
+    def __str__(self):
+        return self.first_name
+
+class signupasseller(models.Model):
+    id=models.AutoField(auto_created=True,primary_key=True)
+    username=models.CharField(max_length=200)
+    firstname=models.CharField(max_length=200)
+    lastname=models.CharField(max_length=200)
+    phone=models.CharField(max_length=200)
+    address=models.CharField(max_length=200)
+    email = models.CharField(max_length=100)
+    password = models.CharField(max_length=10)
+
+
+    class Meta:
+        db_table="Creator"
+
+    def __str__(self):
+    		return self.username
 
 class Order(models.Model):
     product = models.ForeignKey(Product,
@@ -131,6 +127,8 @@ class Order(models.Model):
                                  on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     price = models.IntegerField()
+    color = models.CharField(max_length=50, default='', blank=True, null=True)
+    size = models.CharField(max_length=50, default='', blank=True, null=True)
     address = models.CharField(max_length=50, default='', blank=True)
     phone = models.CharField(max_length=50, default='', blank=True)
     date = models.DateField(default=datetime.datetime.today)
@@ -143,27 +141,28 @@ class Order(models.Model):
     def get_orders_by_customer(customer_id):
         return Order.objects.filter(customer=customer_id).order_by('-date')
 
-class CheckOut(View):
-    def post(self, request):
-        address = request.POST.get('address')
-        phone = request.POST.get('phone')
-        customer = request.session.get('customer')
-        cart = request.session.get('cart')
-        products = Product.get_products_by_id(list(cart.keys()))
-        print(address, phone, customer, cart, products)
+  
 
-        for product in products:
-            print(cart.get(str(product.id)))
-            order = Order(customer=Customer(id=customer),
-                          product=product,
-                          price=product.price,
-                          address=address,
-                          phone=phone,
-                          quantity=cart.get(str(product.id)))
-            order.save()
-        request.session['cart'] = {}
 
-        return redirect('cart')
+class editOrders(models.Model):
+    productname = models.CharField(max_length=50, default='', null=True)
+    customer = models.CharField(max_length=50, default='', null=True)
+    price = models.IntegerField(null=True)
+    color = models.CharField(max_length=50, default='', blank=True, null=True)
+    size = models.CharField(max_length=50, default='', blank=True, null=True)
+    address = models.CharField(max_length=50, default='', blank=True)
+    phone = models.CharField(max_length=50, default='', blank=True)
+    date = models.DateField(default=datetime.datetime.today)
+
+    class Meta:
+        db_table="orderform"
+
+    def __str__(self):
+        return self.productname
+
+
+
+
 
 # RATE_CHOICES = [
 #     (1,'1 - very bad'),

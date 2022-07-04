@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% load static %}
 {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/signuplogin.css' %}">{% endblock %}
 {% block content %}
@@ -40,7 +40,7 @@
                      class="form-control form-control-sm" placeholder="********">
                 </div>
             <input class="btn solid" type="submit" value="Login">
-            <p >Forgot password?</p>
+            <a href={% url 'password_reset' %}>Forgot password?</a>
           </form>
           <form action="/signup/" class="form1 sign-up-form" method="POST">
            {% csrf_token %}

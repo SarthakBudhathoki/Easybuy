@@ -6,8 +6,8 @@ from .middlewares.auth import  auth_middleware
 from .views import  *
 
 urlpatterns = [
-    path('home', views.home ,name="home"),
-    path('', productpage.as_view(), name='productpage'),
+    path('', views.home ,name="home"),
+    path('productpage', productpage, name='productpage'),
     path('store', store , name='store'),
     path('cart', auth_middleware(Cart.as_view()) , name='cart'),
     path('delete_cart/<int:id>',delete_cart,name='delete_cart'),
@@ -16,6 +16,7 @@ urlpatterns = [
     path('categorie', views.categorie,name="categorie"),
     path('login', Login.as_view(), name='login'),
     path('signup/', Signup.as_view(), name='signup'),
+    path('profile/', views.profile, name='profile'),
     path('logout', views.logout , name='logout'),
     path('edit/<int:id>', views.edit ,name="edit"),
     path('contact', views.contact, name='contact'),
@@ -23,6 +24,22 @@ urlpatterns = [
     path("searchresult/", views.searchresult, name="searchresult"),
     path('blog/', views.showblog, name='blog'),
     path('<int:id>', views.blog_detail, name='blog_detail'),
+    path("password_reset/", views.password_reset_request, name="password_reset"),
+    path('admindashboard', views.admin_dashboard_view, name='admindashboard'),
+    path('view-customer', views.view_customer, name='view-customer'),
+    path('view-blog', views.view_blog, name='view-blog'),
+    path('view-product', views.view_product, name='view-product'),
+    path('blogform', views.blogform, name="blogform"),
+    path('productform', views.productform, name="productform"),
+    path('verify_payment', views.verify_payment, name='verify_payment'),
+    path('creator/', views.creator, name='creator'),
+    path('logincreator', views.logincreator, name='/logincreator'),
+    path('creatordashboard', views.creatordashboard, name='/creatordashboard'),
+    path('logoutcreator', views.logoutcreator , name='logoutcreator'),
+    path('creatorprofile', views.creatorprofile , name='creatorprofile'),
+
+
+
 
 ]
 
