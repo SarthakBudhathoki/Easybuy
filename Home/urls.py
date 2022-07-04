@@ -6,8 +6,8 @@ from .middlewares.auth import  auth_middleware
 from .views import  *
 
 urlpatterns = [
-    path('home', views.home ,name="home"),
-    path('', productpage.as_view(), name='productpage'),
+    path('', views.home ,name="home"),
+    path('productpage', productpage, name='productpage'),
     path('store', store , name='store'),
     path('cart', auth_middleware(Cart.as_view()) , name='cart'),
     path('delete_cart/<int:id>',delete_cart,name='delete_cart'),
@@ -27,6 +27,8 @@ urlpatterns = [
     path("password_reset/", views.password_reset_request, name="password_reset"),
     path('admindashboard', views.admin_dashboard_view, name='admindashboard'),
     path('view-customer', views.view_customer, name='view-customer'),
+        path('view-blog', views.view_blog, name='view-blog'),
+
 
 
 

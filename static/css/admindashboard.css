@@ -1,5 +1,4 @@
 
-
 :root{
     /* ===== Colors ===== */
     --primary-color: #0E4BF1;
@@ -83,7 +82,6 @@ body.dark .activity-data::-webkit-scrollbar-thumb:hover{
 .adminnav .logo-image img{
     width: 70px;
     object-fit: cover;
-    border-radius: 50%;
 }
 
 .adminnav .logo-name .logo_name{

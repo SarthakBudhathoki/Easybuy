@@ -22,26 +22,31 @@
         <br><br>
 
         <div class="comment-form">
-            <h2 class="comment-headline">Leave a comment</h2>
+            <h2 class="comment-headline" style="  font-size: 35px;">Leave a comment</h2>
             <form id="submit-form" action="">
               <p>
-                <input id="name" class="cmtform-input" type="text" placeholder="Your Name*" style=" width: 100%;
-                border: 1px solid #bdbdbd;
+                <input id="name" class="cmtform-input" type="text" placeholder="Your Name*" 
+                style=" width: 100%; height:70px;
+                font-size: 15px;
+                border: 2px solid #000;
                 border-radius: 5px;padding: 1em;">
                 <small class="name-error"></small>
               </p>
               <p>
-                <input id="email" class="cmtform-input" type="email" placeholder="Your Email*" style=" width: 100%;
-                border: 1px solid #bdbdbd;
+                <input id="email" class="cmtform-input" type="email" placeholder="Your Email*" 
+                style=" width: 100%; 
+                height:70px;
+                border: 2px solid #000;
+                font-size: 15px;
                 border-radius: 5px;padding: 1em;">
                 <small class="name-error"></small>
               </p>
               <p class="full-width">
-                <textarea  minlength="20" id="message" cols="30" rows="7" placeholder="Your Message*" required></textarea>
+                <textarea  minlength="20" id="message" cols="30" rows="7" placeholder="Your Message*" required style="border: 2px solid #000; font-size: 15px; "></textarea>
                 <small></small>
               </p>
               <p class="full-width">
-                <input type="submit" class="submit-commentbtn" value="Submit" onclick="checkValidations()">
+                <input type="submit" class="btn btn-dark" style="width:100px; height:40px; font-size:20px;" value="Submit" onclick="checkValidations()">
               </p>
             </form>
           </div>

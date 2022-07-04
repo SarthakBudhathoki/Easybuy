@@ -166,9 +166,8 @@ def searchresult(request):
     context ={ 'products':products}
     return render(request,'productpage/search.html',context)  
 
-class productpage(View):
-    
-    def post(self , request):
+def productpage(request):
+    if(request.method == 'POST'):
         product = request.POST.get('product')
         remove = request.POST.get('remove')
         cart = request.session.get('cart')
@@ -191,14 +190,11 @@ class productpage(View):
 
         request.session['cart'] = cart
         print('cart' , request.session['cart'])
-        return redirect('productpage')
-
-
-
-    def get(self , request):
-        # print()
+        return redirect('/store')
+    else:
         return HttpResponseRedirect(f'/store{request.get_full_path()[1:]}')
 
+    
 def store(request):
         cart = request.session.get('cart')
         if not cart:
@@ -382,6 +378,22 @@ def view_customer(request):
     }
     return render(request,'admin/view_customer.html',data)
 
+<<<<<<< HEAD
+def view_blog(request):
+    user = get_user_model()
+    single_blog=Blogs.objects.all()
+    usercount = user.objects.all().filter(is_superuser=False).count()
+    productcount = Product.objects.all().count()
+    #bookingcount = Booking.objects.all().count()
+    data = {
+        'single_blog':single_blog,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+        
+    }
+    return render(request,'admin/view_blog.html',data)
+=======
 #changes made by sarthak for khalti
 def verify_payment(request):
    data = request.POST
@@ -414,3 +426,4 @@ def verify_payment(request):
    
    return JsonResponse(f"Payment Done !! With IDX. {response_data['user']['idx']}",safe=False)
 
+>>>>>>> ba575462c399f0fe9e95e824575d5234ba3d68d9
