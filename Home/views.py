@@ -395,7 +395,7 @@ def verify_payment(request):
    "amount": amount
    }
    headers = {
-   "Authorization": "Key test_secret_key_c406db1d5d0e425a991d6de296d329e3"
+   "Authorization": "Key test_public_key_b6da2d98bc574cb88473342277eb4306"
    }
    
 
