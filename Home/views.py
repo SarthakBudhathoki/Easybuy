@@ -543,14 +543,14 @@ def creatordashboard(request):
     categories = Category.get_all_categories()
   
 
-    form = Products(request.POST)
+    form = ProductForm(request.POST)
     context  = {
             'form': form,
             'customers': customers,
             'categories': categories
             }
     if request.method =='POST':
-        form = Products(request.POST)
+        form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
         return redirect('/creatordashboard')   
