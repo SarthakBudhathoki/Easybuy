@@ -381,6 +381,11 @@ def view_customer(request):
     }
     return render(request,'admin/view_customer.html',data)
 
+def delete_customer(request, p_id):
+    customer = Customer.objects.get(id=p_id)
+    customer.delete()
+    return redirect('/view-customer')
+
 def view_blog(request):
     user = get_user_model()
     single_blog=Blogs.objects.all()
@@ -494,7 +499,7 @@ def productform(request):
 
     else:
 
-        product=ProductForm()
+        product=ProductsForm()
 
      
 
@@ -518,14 +523,14 @@ def update_product(request,p_id):
 
     product=Product.objects.get(id=p_id)
 
-    form=ProductForm(request.POST, instance=product)
+    form=ProductsForm(request.POST, instance=product)
 
     form.save()
 
     return redirect ("/view-product")
 
 def delete_product(request, p_id):
-    product = Product.objects.get(product_id=p_id)
+    product = Product.objects.get(id=p_id)
     product.delete()
     return redirect('/view-product')
 

@@ -37,6 +37,7 @@ urlpatterns = [
     path('edit_product/<int:p_id>', views.edit_product,name='edit_product'),
     path('delete_product/<int:p_id>', views.delete_product,name='delete_product'),
     path('update_product/<int:p_id>', views.update_product,name='update_product'),
+    path('delete_customer/<int:p_id>', views.delete_customer,name='delete_customer'),
     path('verify_payment', views.verify_payment, name='verify_payment'),
     path('creator/', views.creator, name='creator'),
     path('logincreator', views.logincreator, name='/logincreator'),
