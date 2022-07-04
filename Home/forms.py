@@ -27,3 +27,8 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ("__all__")
+
+class ProductsForm(forms.ModelForm): 
+    class Meta:
+        model = Product
+        fields = ["name",'category','image','price',"description"]

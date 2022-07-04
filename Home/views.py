@@ -396,6 +396,34 @@ def view_blog(request):
     }
     return render(request,'admin/view_blog.html',data)
 
+def edit_blog(request,p_id):
+
+    try:
+
+       blog=Blogs.objects.get(blog_id=p_id)
+
+       return render(request, "admin/blog_edit.html", {'single_blog':blog})
+
+    except:
+
+       print("No Data Found")
+
+    return redirect("/view-blog")
+
+def update_blog(request,p_id):
+
+    blog=Blogs.objects.get(blog_id=p_id)
+    form=BlogForm(request.POST,request.FILES, instance=blog)
+    form.save()
+
+    return redirect ("/view-blog")
+
+def delete_blog(request, p_id):
+    blog = Blogs.objects.get(blog_id=p_id)
+    blog.delete()
+    return redirect('/view-blog')
+
+
 def blogform(request):
 
     print(request.FILES)
@@ -415,7 +443,6 @@ def blogform(request):
     if request.method=="POST":
 
         blogs=BlogForm(request.POST,request.FILES)
-        
        
 
         blogs.save()
@@ -449,7 +476,7 @@ def productform(request):
     usercount = Customer.objects.all().count()
     productcount = Product.objects.all().count()
 
-    print(request.FILES)
+    print(request.POST,request.FILES)
     data = {
         'product':product,
         'usercount':usercount,
@@ -460,10 +487,10 @@ def productform(request):
 
     if request.method=="POST":
 
-        product=ProductForm(request.POST,request.FILES)
+        product=ProductsForm(request.POST,request.FILES)
 
         product.save()
-        return redirect ("store")
+        return redirect ("/view-product")
 
     else:
 
@@ -471,7 +498,36 @@ def productform(request):
 
      
 
-    return render (request,"admin/product_form.html",data)
+    return render (request,"admin/product_form.html",{'product':product})
+
+def edit_product(request,p_id):
+
+    try:
+
+       product=Product.objects.get(id=p_id)
+
+       return render(request, "admin/product_edit.html", {'product':product})
+
+    except:
+
+       print("No Data Found")
+
+    return redirect("/view-product")
+
+def update_product(request,p_id):
+
+    product=Product.objects.get(id=p_id)
+
+    form=ProductForm(request.POST, instance=product)
+
+    form.save()
+
+    return redirect ("/view-product")
+
+def delete_product(request, p_id):
+    product = Product.objects.get(product_id=p_id)
+    product.delete()
+    return redirect('/view-product')
 
 #changes made by sarthak for khalti
 def verify_payment(request):

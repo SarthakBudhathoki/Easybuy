@@ -40,6 +40,7 @@ class Product(models.Model):
    
     
     class Meta:
+        db_table = "ProductForm"
         ordering = ('name',)
         index_together = (('id', 'slug'),)
     def __str__(self):
