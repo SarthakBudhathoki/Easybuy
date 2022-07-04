@@ -1,4 +1,5 @@
 from itertools import product
+import json
 from multiprocessing import context
 from django.shortcuts import redirect, render, HttpResponseRedirect, HttpResponse
 from .models import Product, Blogs
@@ -378,7 +379,7 @@ def view_customer(request):
     }
     return render(request,'admin/view_customer.html',data)
 
-<<<<<<< HEAD
+
 def view_blog(request):
     user = get_user_model()
     single_blog=Blogs.objects.all()
@@ -393,7 +394,7 @@ def view_blog(request):
         
     }
     return render(request,'admin/view_blog.html',data)
-=======
+
 #changes made by sarthak for khalti
 def verify_payment(request):
    data = request.POST
@@ -411,7 +412,7 @@ def verify_payment(request):
    }
    
 
-   response = requests.post(url, payload, headers = headers)
+   response = request.post(url, payload, headers = headers)
    
    response_data = json.loads(response.text)
    status_code = str(response.status_code)
@@ -426,4 +427,3 @@ def verify_payment(request):
    
    return JsonResponse(f"Payment Done !! With IDX. {response_data['user']['idx']}",safe=False)
 
->>>>>>> ba575462c399f0fe9e95e824575d5234ba3d68d9
