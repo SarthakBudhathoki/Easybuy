@@ -255,6 +255,7 @@ def contact(request):
     return render(request, 'contact/contact.html')
 
 
+
 class CheckOut(View):
     def post(self, request):
         address = request.POST.get('address')
@@ -304,6 +305,15 @@ def showblog(request):
 
 def blog_detail(request, id):
     single_blog = get_object_or_404(Blogs, pk=id)
+    if(request.method == "POST"):
+        try:
+            comment = CommentForm(request.POST,request.FILES)
+            if comment.is_valid():
+                comment.save()
+                return redirect("/blog/")
+
+        except:
+            print(request)
 
     # usercount = User.objects.all().filter(is_superuser=False).count()
     # productcount = Products.objects.all().count()
@@ -321,6 +331,20 @@ def blog_detail(request, id):
 
     return render(request, 'blog/blog_detail.html', data)
 
+def view_comment(request):
+    user = get_user_model()
+    comment=Comment.objects.all()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+    
+    data = {
+        'comment': comment,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+    }
+
+    return render (request,"admin/view_comment.html", data)
 
 def password_reset_request(request):
 	if request.method == "POST":
