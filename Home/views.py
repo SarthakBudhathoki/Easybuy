@@ -655,3 +655,20 @@ def creatorprofile(request):
             
             }
     return render(request,'Account/creatorprofile.html',context)
+
+
+
+
+def adminlogin(request):
+    if request.method=='POST':
+        print(request)
+        username=request.POST["Username"]
+        password=request.POST["Password"]
+   
+        customers=adminaccount.objects.get(username=username,password=password)
+        request.session['username']=request.POST['Username']
+        request.session['id']=customers.id
+        return redirect ('/admindashboard')
+        
+                
+    return render(request, 'admin/adminlogin.html')

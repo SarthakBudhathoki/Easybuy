@@ -45,6 +45,8 @@ urlpatterns = [
     path('creatordashboard', views.creatordashboard, name='/creatordashboard'),
     path('logoutcreator', views.logoutcreator , name='logoutcreator'),
     path('creatorprofile', views.creatorprofile , name='creatorprofile'),
+    path('adminlogin', views.adminlogin , name='adminlogin'),
+
 
 
 ]
