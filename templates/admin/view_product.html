@@ -43,7 +43,7 @@
             <td>{{p.name}}</td> 
             <td>{{p.description}}</td>
             <td>{{p.price}}</td>
-            <td><img src="/media/productimage/{{product.image}}" style="max-width: 150px;" height="50px"></td>
+            <td><img src="/media/{{p.image}}" style="max-width: 150px;" height="50px"></td>
             <td><a class="btn btn-success btn-xs" href="/edit_product/{{p.id}}"><span class="glyphicon glyphicon-trash"></span>edit</a></td>
             <td><a class="btn btn-danger btn-xs" href="/delete_product/{{p.id}}"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
 

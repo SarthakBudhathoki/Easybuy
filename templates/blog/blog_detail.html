@@ -23,9 +23,10 @@
 
         <div class="comment-form">
             <h2 class="comment-headline" style="  font-size: 35px;">Leave a comment</h2>
-            <form id="submit-form" action="">
+            <form id="submit-form" action="" method="POST">
+              {% csrf_token %}
               <p>
-                <input id="name" class="cmtform-input" type="text" placeholder="Your Name*" 
+                <input id="name" name="c_name" class="cmtform-input" type="text" placeholder="Your Name*" 
                 style=" width: 100%; height:70px;
                 font-size: 15px;
                 border: 2px solid #000;
@@ -33,7 +34,7 @@
                 <small class="name-error"></small>
               </p>
               <p>
-                <input id="email" class="cmtform-input" type="email" placeholder="Your Email*" 
+                <input id="email" name="c_email" class="cmtform-input" type="email" placeholder="Your Email*" 
                 style=" width: 100%; 
                 height:70px;
                 border: 2px solid #000;
@@ -42,7 +43,7 @@
                 <small class="name-error"></small>
               </p>
               <p class="full-width">
-                <textarea  minlength="20" id="message" cols="30" rows="7" placeholder="Your Message*" required style="border: 2px solid #000; font-size: 15px; "></textarea>
+                <textarea  minlength="20" name="c_message" id="message" cols="30" rows="7" placeholder="Your Message*" required style="border: 2px solid #000; font-size: 15px; "></textarea>
                 <small></small>
               </p>
               <p class="full-width">

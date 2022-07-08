@@ -79,10 +79,19 @@ class Blogs(models.Model):
     blog_details=models.CharField(max_length=200)
     blog_image=models.FileField(upload_to='blog_image')
 
+
     class Meta:
         db_table="blog"
 
 
+class Comment(models.Model):
+    c_id=models.AutoField(auto_created=True,primary_key=True)
+    c_name=models.CharField(max_length=200)
+    c_email=models.CharField(max_length=200)
+    c_message=models.CharField(max_length=200)
+
+    class Meta:
+        db_table="comment"
 
 class Customer(models.Model):
     id=models.AutoField(auto_created=True,primary_key=True)

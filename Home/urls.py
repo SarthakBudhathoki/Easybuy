@@ -34,6 +34,7 @@ urlpatterns = [
     path('delete_blog/<int:p_id>', views.delete_blog,name='delete_blog'),
     path('productform', views.productform, name="productform"),
     path('view-product', views.view_product, name='view-product'),
+    path('view-comment', views.view_comment, name='view-comment'),
     path('edit_product/<int:p_id>', views.edit_product,name='edit_product'),
     path('delete_product/<int:p_id>', views.delete_product,name='delete_product'),
     path('update_product/<int:p_id>', views.update_product,name='update_product'),
@@ -44,8 +45,6 @@ urlpatterns = [
     path('creatordashboard', views.creatordashboard, name='/creatordashboard'),
     path('logoutcreator', views.logoutcreator , name='logoutcreator'),
     path('creatorprofile', views.creatorprofile , name='creatorprofile'),
-
-
 
 
 ]
