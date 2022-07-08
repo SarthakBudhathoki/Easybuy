@@ -12,8 +12,8 @@
   <div class="drop-container d-inline ">
    <form  method="POST" class="text-center">
         {% csrf_token %}
-        {{form}}
-        {% comment %} <div class="drop ">
+   
+        <div class="drop ">
             <i class=""><img class="thumbnail" src="{% static 'images/upload.png' %}"></i>
             <span class="text">
                 Drag and drop your documents, photos, and video here.
@@ -44,7 +44,7 @@
         	<textarea class="effect-10" name="description" type="text" placeholder="description"></textarea>
             <span class="focus-bg"></span>
         </div>
-       {% endcomment %}
+      
        <button  type="submit" value="register" class="justify-content-center btn btn-info ">Register</button>
     </form>
     <div>
