@@ -252,7 +252,40 @@ def edit(request, id):
 
 
 def contact(request):
-    return render(request, 'contact/contact.html')
+
+    if request.method == "POST":
+
+        message_name = request.POST['message_name']
+
+        message_email = request.POST['message_email']
+
+        message_subject = request.POST['message_subject']
+
+        message =request.POST['message']
+
+
+
+        send_mail(
+
+            message_subject, #subject
+
+            message, #message
+
+            message_email, #from email
+
+            ['sthronesh11@gmail.com' ], #To email
+
+            # fail_silently= True,
+
+        )  
+
+        return render(request, 'contact/contactus.html', {'message_name': message_name})
+
+
+
+    else:
+
+        return render(request, 'contact/contact.html' , {})     
 
 
 
