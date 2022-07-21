@@ -233,6 +233,15 @@ def edit(request, id):
         'products': products,'numbers' : numbers
       }
     print(request)
+    if(request.method == "POST"):
+        try:
+            review = ReviewForm(request.POST,request.FILES)
+            if review.is_valid():
+                review.save()
+                return redirect("/")
+
+        except:
+            print(request)
     if request.method =='POST':
         form = orderform(request.POST)
         if form.is_valid(): 
@@ -252,7 +261,40 @@ def edit(request, id):
 
 
 def contact(request):
-    return render(request, 'contact/contact.html')
+
+    if request.method == "POST":
+
+        message_name = request.POST['message_name']
+
+        message_email = request.POST['message_email']
+
+        message_subject = request.POST['message_subject']
+
+        message =request.POST['message']
+
+
+
+        send_mail(
+
+            message_subject, #subject
+
+            message, #message
+
+            message_email, #from email
+
+            ['sthronesh11@gmail.com' ], #To email
+
+            # fail_silently= True,
+
+        )  
+
+        return render(request, 'contact/contactus.html', {'message_name': message_name})
+
+
+
+    else:
+
+        return render(request, 'contact/contact.html' , {})     
 
 
 
@@ -345,6 +387,21 @@ def view_comment(request):
     }
 
     return render (request,"admin/view_comment.html", data)
+
+def view_review(request):
+    user = get_user_model()
+    review=Review.objects.all()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+    
+    data = {
+        'review': review,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+    }
+
+    return render (request,"admin/view_review.html", data)
 
 def password_reset_request(request):
 	if request.method == "POST":

@@ -93,6 +93,15 @@ class Comment(models.Model):
     class Meta:
         db_table="comment"
 
+class Review(models.Model):
+    r_id=models.AutoField(auto_created=True,primary_key=True)
+    r_name=models.CharField(max_length=200)
+    r_email=models.CharField(max_length=200)
+    r_message=models.CharField(max_length=200)
+
+    class Meta:
+        db_table="review"
+
 class Customer(models.Model):
     id=models.AutoField(auto_created=True,primary_key=True)
     user = models.OneToOneField(User,null=True, on_delete=models.CASCADE)
