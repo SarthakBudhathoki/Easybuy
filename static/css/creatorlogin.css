@@ -23,6 +23,7 @@ a {
 .login-wrap {
     width: 100%;
     margin: auto;
+    padding-top: 30px;
     max-width: 525px;
     min-height: 500px;
     position: relative;

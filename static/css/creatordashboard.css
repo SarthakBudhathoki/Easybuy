@@ -121,3 +121,82 @@
         -moz-appearance: none;
         appearance: none;
     }
+    
+    .frame {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        height: 400px;
+        margin-top: -200px;
+        margin-left: -200px;
+        border-radius: 2px;
+        box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        background: #67B26F;
+        background: -webkit-linear-gradient(to right, #4ca2cd, #67B26F);
+        background: linear-gradient(to right, #4ca2cd, #67B26F);
+        color: #333;
+        font-family: 'Poppins', 'Open Sans', Helvetica, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 250px;
+        height: 250px;
+        background-color: #fff;
+        box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.7);
+    }
+    
+    .title {
+        text-align: center;
+        font-size: 18px;
+        line-height: 0.5;
+        border-bottom: 1px solid #000;
+    }
+    
+    .file {
+        position: absolute;
+        display: table;
+        table-layout: fixed;
+        width: 100px;
+        height: 80px;
+        top: 90px;
+        left: 75px;
+        border: 1px dotted #000;
+        border-radius: 5px;
+    }
+    
+    .file {
+        cursor: pointer;
+    }
+    
+    .btn {
+        position: absolute;
+        bottom: 5%;
+        top: 100px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        width: 100px;
+        height: 35px;
+        text-align: center;
+        background-color: #edf8ee;
+        color: #fff;
+        font-size: 16px;
+    }
+    
+    .btn:hover {
+        cursor: pointer;
+        width: 120px;
+        height: 40px;
+        background: #e9f0ea;
+        background: -webkit-linear-gradient(to right, #4ca2cd);
+        background: linear-gradient(to right, #4ca2cd);
+    }

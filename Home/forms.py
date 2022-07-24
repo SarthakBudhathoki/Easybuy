@@ -39,14 +39,13 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ("__all__")
 
-<<<<<<< HEAD
-class adminform(forms.ModelForm):
-    class Meta:
-        model = adminaccount
-        fields = ("__all__")        
-=======
 class ReviewForm(forms.ModelForm): 
     class Meta:
         model = Review
         fields = ("__all__")
->>>>>>> 9d4f1bde24b5be2d6377a4ac4cbfceb47a13eabf
+
+
+class contact(forms.ModelForm):
+    class Meta:
+        model = contactform
+        fields = ("__all__")   

@@ -262,39 +262,18 @@ def edit(request, id):
 
 def contact(request):
 
-    if request.method == "POST":
+    if request.method =='POST':
 
-        message_name = request.POST['message_name']
-
-        message_email = request.POST['message_email']
-
-        message_subject = request.POST['message_subject']
-
-        message =request.POST['message']
-
-
-
-        send_mail(
-
-            message_subject, #subject
-
-            message, #message
-
-            message_email, #from email
-
-            ['sthronesh11@gmail.com' ], #To email
-
-            # fail_silently= True,
-
-        )  
-
-        return render(request, 'contact/contactus.html', {'message_name': message_name})
+        form = contact(request.POST  or None)
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request,"your enquiry has been submitted " + user)
+            print(form)
+            return render(request, 'contact/contactus.html')
 
 
-
-    else:
-
-        return render(request, 'contact/contact.html' , {})     
+    return render(request, 'contact/contact.html')     
 
 
 
@@ -574,12 +553,14 @@ def productform(request):
     if request.method=="POST":
 
         product=ProductsForm(request.POST,request.FILES)
-
-        product.save()
-        return redirect ("/view-product")
+        print(" has been readt")
+        if product.is_valid():
+            print(" has been saved")
+            product.save()
+            return redirect ("/view-product")
 
     else:
-
+        print(" has ")
         product=ProductsForm()
 
      
@@ -681,23 +662,34 @@ def logincreator(request):
     return render(request,'Account/creatorlogin.html',)
 
 def creatordashboard(request):
-    customers = signupasseller.objects.get(username=request.session['username'])
-    categories = Category.get_all_categories()
-  
+    product=Product.objects.all()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
 
-    form = ProductForm(request.POST)
-    context  = {
-            'form': form,
-            'customers': customers,
-            'categories': categories
-            }
-    if request.method =='POST':
-        form = ProductForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return redirect('/creatordashboard')   
+    print(request.POST,request.FILES)
+    data = {
+        'product':product,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+        
+    }
+
+    if request.method=="POST":
+
+        product=ProductsForm(request.POST,request.FILES)
+        print(" has been readt")
+        if product.is_valid():
+            print(" has been saved")
+            product.save()
+            return render(request,'Account/creatordashboard.html',data)
+
+    else:
+        print(" has ")
+        product=ProductsForm()
+
    
-    return render(request,'Account/creatordashboard.html',context)
+    return render(request,'Account/creatordashboard.html',data)
 
 
 def logoutcreator(request):

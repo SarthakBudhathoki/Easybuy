@@ -2,12 +2,14 @@
 {%load static%}
 {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/admin.css' %}">{% endblock %}
 {% block content%}
+<div class="pt-5">
+<div class="login-html pt-5">
 <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
           <form action="" method="POST" class="sign-in-form">
             {% csrf_token %}
-            <h2 class="title">Login</h2>
+            <h2 class="title ">Admin Login</h2>
             {% for message in messages  %}
               <p class= "createdmesseges">{{message}}</p>
             {% endfor %}
@@ -22,6 +24,8 @@
             <button type="submit" class="btn solid btn-success">Login</button>
         </div>
       </div>
+</div>
+</div>
 </div>
   
 

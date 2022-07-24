@@ -222,3 +222,13 @@ class adminaccount(models.Model):
 # class review(models.model){
 #     rate = models.PositiveSmallIntergerField()
 # }
+
+class contactform(models.Model):
+    id=models.AutoField(auto_created=True,primary_key=True)
+    username = models.CharField(max_length=50)
+    email = models.CharField(max_length=200)
+    subject = models.CharField(max_length=100)
+    messgae = models.CharField(max_length=500)
+
+    def __str__(self):
+    	return self.username

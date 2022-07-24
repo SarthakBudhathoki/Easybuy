@@ -2,12 +2,12 @@
 {% load static %}
 {% block css %}<link rel="stylesheet" type="text/css" href="{% static 'css/creatordashboard.css' %}">{% endblock %}
 {% block content %}
-
- <h1 class="texth1 "><em>Welcome, {{customers.username}}</em></h1>
+<div class="pt-5">
+ <h1 class="texth1 pt-5"><em>Welcome, {{customers.username}}</em></h1>
   {% for message in messages  %}
                   <p class= "createdmesseges">{{message}}</p>
     {% endfor %}
-                
+ </div>               
 <div class="container tm-mt-big tm-mb-big">
     <div class="row">
       <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
@@ -99,7 +99,7 @@
               </div>
             </div>
             <div class="col-12">
-              <button type="submit" value="submit" class="btn btn-primary btn-block text-uppercase">Add Product  </button>
+              <button type="submit" value="submit" class="btn">Add Product  </button>
             </div>
           </form>
           </div>

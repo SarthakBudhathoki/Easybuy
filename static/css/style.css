@@ -71,7 +71,7 @@
         .landing .landing-text h1:hover {
             transform: translate3d(0, -20px, 32px);
             transition: 1s;
-            color: #8c8c92;
+            color: #e8e8f6;
         }
         
         @media (max-width: 992px) {
@@ -90,7 +90,7 @@
             font-size: 18px;
             max-width: 700px;
             margin: 0 0 29.41176px;
-            color: #bcbfc1;
+            color: #ecf2f6;
         }
         
         @media (max-width: 992px) {
