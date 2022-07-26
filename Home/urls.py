@@ -17,6 +17,7 @@ urlpatterns = [
     path('login', Login.as_view(), name='login'),
     path('signup/', Signup.as_view(), name='signup'),
     path('profile/', views.profile, name='profile'),
+    path('changepassword/', views.changepassword, name='changepassword'),
     path('logout', views.logout , name='logout'),
     path('edit/<int:id>', views.edit ,name="edit"),
     path('contact', views.contact, name='contact'),

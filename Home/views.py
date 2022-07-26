@@ -31,7 +31,7 @@ def home(request):
 
     return render(request,'home/home.html',)
 
-@login_required(login_url="login")
+
 def profile(request):
     email = request.POST.get('email')
     customer = Customer.get_customer_by_email(email)
@@ -39,6 +39,10 @@ def profile(request):
 
     return render(request,'Account/profile.html',{'customer': customer})
 
+def changepassword(request):
+ 
+
+    return render(request,'Account/changepassword.html')
 
 class Signup(View):
     def get(self, request):

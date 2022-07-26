@@ -32,11 +32,11 @@
                     <td>{{product|price_total:request.session.cart|currency}}</td>
                     <td>	{% if product|is_in_cart:request.session.cart %}
 						<div class="row no-gutters btn-outline-light">  
-							<form action="cart/#{{product.id}}" class="col-2 " method="post">
+							<form action="/productpage#{{product.id}}" class="col-2 " method="POST">
 								{% csrf_token %}
 								<input hidden type="text" name='product' value='{{product.id}}'>
 								<input hidden type="text" name='remove' value='True'>
-								<input type="submit" value="Remove item" class="btn btn-block btn-danger border-right">
+								<input  class="btn btn-danger" type="submit" value=" remove " class="btn btn-block btn-light border-right">
 							</form>
 						{% endif %}</td>
 
