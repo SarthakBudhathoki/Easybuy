@@ -73,6 +73,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Easybuy.wsgi.application'
 
 
+
+CHANNEL_LAYER = {
+    'defult':{
+        "backend": 'channels.layer.InMemoryChannelLayer'
+    }
+}
+
+
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -137,3 +145,16 @@ USE_THOUSAND_SEPARATOR = True
 
 
 USE_THOUSAND_SEPARATOR = True
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+
+EMAIL_PORT = '587'
+
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'sthronesh11@gmail.com'
+
+EMAIL_HOST_PASSWORD = 'yedtwrhyzoeowrpu'
