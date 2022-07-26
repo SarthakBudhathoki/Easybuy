@@ -233,6 +233,15 @@ def edit(request, id):
         'products': products,'numbers' : numbers
       }
     print(request)
+    if(request.method == "POST"):
+        try:
+            review = ReviewForm(request.POST,request.FILES)
+            if review.is_valid():
+                review.save()
+                return redirect("/")
+
+        except:
+            print(request)
     if request.method =='POST':
         form = orderform(request.POST)
         if form.is_valid(): 
@@ -378,6 +387,21 @@ def view_comment(request):
     }
 
     return render (request,"admin/view_comment.html", data)
+
+def view_review(request):
+    user = get_user_model()
+    review=Review.objects.all()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+    
+    data = {
+        'review': review,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+    }
+
+    return render (request,"admin/view_review.html", data)
 
 def password_reset_request(request):
 	if request.method == "POST":

@@ -19,8 +19,8 @@
 
 <div class="activity">
     <div class="title">
-        <i class="fas fa-blog me-2">    </i>
-        <span class="text">Comments</span>
+        <i class="fas fa-star me-2">    </i>
+        <span class="text">Review</span>
     </div>
 
     <table class="table table-hover" id="dev-table">
@@ -29,11 +29,11 @@
                 <th>Comment</th>
             </tr>
         </thead> -->
-        {% for c in comment %}
+        {% for r in review %}
         <tr>
-            <td> {{c.c_name}}</td>
-            <td>{{c.c_email}}</td>
-            <td>{{c.c_message}}</td>
+            <td> {{r.r_name}}</td>
+            <td>{{r.r_email}}</td>
+            <td>{{r.r_message}}</td>
         </tr>
         {% endfor %}
     </table>
