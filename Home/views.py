@@ -252,7 +252,41 @@ def edit(request, id):
 
 
 def contact(request):
-    return render(request, 'contact/contact.html')
+
+    if request.method == "POST":
+
+        message_name = request.POST['message_name']
+
+        message_email = request.POST['message_email']
+
+        message_subject = request.POST['message_subject']
+
+        message =request.POST['message']
+
+
+
+        send_mail(
+
+            message_subject, #subject
+
+            message, #message
+
+            message_email, #from email
+
+            ['sthronesh11@gmail.com' ], #To email
+
+            # fail_silently= True,
+
+        )  
+
+        return render(request, 'contact/contactus.html', {'message_name': message_name})
+
+
+
+    else:
+
+        return render(request, 'contact/contact.html' , {})     
+
 
 
 class CheckOut(View):
@@ -304,6 +338,15 @@ def showblog(request):
 
 def blog_detail(request, id):
     single_blog = get_object_or_404(Blogs, pk=id)
+    if(request.method == "POST"):
+        try:
+            comment = CommentForm(request.POST,request.FILES)
+            if comment.is_valid():
+                comment.save()
+                return redirect("/blog/")
+
+        except:
+            print(request)
 
     # usercount = User.objects.all().filter(is_superuser=False).count()
     # productcount = Products.objects.all().count()
@@ -321,6 +364,20 @@ def blog_detail(request, id):
 
     return render(request, 'blog/blog_detail.html', data)
 
+def view_comment(request):
+    user = get_user_model()
+    comment=Comment.objects.all()
+    usercount = Customer.objects.all().count()
+    productcount = Product.objects.all().count()
+    
+    data = {
+        'comment': comment,
+        'usercount':usercount,
+        #'bookingcount':bookingcount,
+        'productcount':productcount,
+    }
+
+    return render (request,"admin/view_comment.html", data)
 
 def password_reset_request(request):
 	if request.method == "POST":
@@ -381,6 +438,11 @@ def view_customer(request):
     }
     return render(request,'admin/view_customer.html',data)
 
+def delete_customer(request, p_id):
+    customer = Customer.objects.get(id=p_id)
+    customer.delete()
+    return redirect('/view-customer')
+
 def view_blog(request):
     user = get_user_model()
     single_blog=Blogs.objects.all()
@@ -395,6 +457,34 @@ def view_blog(request):
         
     }
     return render(request,'admin/view_blog.html',data)
+
+def edit_blog(request,p_id):
+
+    try:
+
+       blog=Blogs.objects.get(blog_id=p_id)
+
+       return render(request, "admin/blog_edit.html", {'single_blog':blog})
+
+    except:
+
+       print("No Data Found")
+
+    return redirect("/view-blog")
+
+def update_blog(request,p_id):
+
+    blog=Blogs.objects.get(blog_id=p_id)
+    form=BlogForm(request.POST,request.FILES, instance=blog)
+    form.save()
+
+    return redirect ("/view-blog")
+
+def delete_blog(request, p_id):
+    blog = Blogs.objects.get(blog_id=p_id)
+    blog.delete()
+    return redirect('/view-blog')
+
 
 def blogform(request):
 
@@ -415,7 +505,6 @@ def blogform(request):
     if request.method=="POST":
 
         blogs=BlogForm(request.POST,request.FILES)
-        
        
 
         blogs.save()
@@ -449,7 +538,7 @@ def productform(request):
     usercount = Customer.objects.all().count()
     productcount = Product.objects.all().count()
 
-    print(request.FILES)
+    print(request.POST,request.FILES)
     data = {
         'product':product,
         'usercount':usercount,
@@ -460,18 +549,47 @@ def productform(request):
 
     if request.method=="POST":
 
-        product=ProductForm(request.POST,request.FILES)
+        product=ProductsForm(request.POST,request.FILES)
 
         product.save()
-        return redirect ("store")
+        return redirect ("/view-product")
 
     else:
 
-        product=ProductForm()
+        product=ProductsForm()
 
      
 
-    return render (request,"admin/product_form.html",data)
+    return render (request,"admin/product_form.html",{'product':product})
+
+def edit_product(request,p_id):
+
+    try:
+
+       product=Product.objects.get(id=p_id)
+
+       return render(request, "admin/product_edit.html", {'product':product})
+
+    except:
+
+       print("No Data Found")
+
+    return redirect("/view-product")
+
+def update_product(request,p_id):
+
+    product=Product.objects.get(id=p_id)
+
+    form=ProductsForm(request.POST, instance=product)
+
+    form.save()
+
+    return redirect ("/view-product")
+
+def delete_product(request, p_id):
+    product = Product.objects.get(id=p_id)
+    product.delete()
+    return redirect('/view-product')
 
 #changes made by sarthak for khalti
 def verify_payment(request):
@@ -518,6 +636,7 @@ def creator(request):
             user = form.cleaned_data.get('firstname')
             messages.success(request, "you can now login " + user)
             print(form)
+            
         return redirect('/logincreator')
     
     return render(request,'Account/signupascreator.html',)
@@ -539,12 +658,20 @@ def logincreator(request):
 
 def creatordashboard(request):
     customers = signupasseller.objects.get(username=request.session['username'])
-
     categories = Category.get_all_categories()
+  
+
+    form = ProductForm(request.POST)
     context  = {
+            'form': form,
             'customers': customers,
             'categories': categories
             }
+    if request.method =='POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/creatordashboard')   
    
     return render(request,'Account/creatordashboard.html',context)
 

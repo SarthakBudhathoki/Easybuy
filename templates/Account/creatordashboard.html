@@ -4,9 +4,15 @@
 {% block content %}
 
  <h1 class="texth1 "><em>Welcome, {{customers.username}}</em></h1>
+  {% for message in messages  %}
+                  <p class= "createdmesseges">{{message}}</p>
+    {% endfor %}
+                
 <div class="container border border-danger bg-white">
   <div class="drop-container d-inline ">
-   <form>
+   <form  method="POST" class="text-center">
+        {% csrf_token %}
+   
         <div class="drop ">
             <i class=""><img class="thumbnail" src="{% static 'images/upload.png' %}"></i>
             <span class="text">
@@ -18,7 +24,7 @@
                 <span class="line"></span>
             </div>
             <label class="label1" for="file-upload">Browse Files</label>
-            <input type="file" name="image" id="file-upload" class="file-input" multiple />
+            <input type="file" name="image" id="file-upload" class="file-input"  />
         </div>
         <div class="row-3">
         	<input class="effect-10" type="text" name="name" placeholder="product name">
@@ -39,8 +45,8 @@
             <span class="focus-bg"></span>
         </div>
       
-        <bottom type="submit"  class="btn btn-success p-3">Upload</bottom>
-         </form>
+       <button  type="submit" value="register" class="justify-content-center btn btn-info ">Register</button>
+    </form>
     <div>
    
     

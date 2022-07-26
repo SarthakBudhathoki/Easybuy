@@ -42,7 +42,7 @@ div.form {
 .form-headline:after {
     content: "";
     display: block;
-    width: 159%;
+    width: 155%;
     padding-top: 10px;
     border-bottom: 1px solid #000;
 }
@@ -83,6 +83,7 @@ div.form {
 h3,
 ul {
     margin: 0;
+    font-size: large;
 }
 
 h3 {
@@ -99,6 +100,7 @@ textarea {
     width: 100%;
     border: 1px solid #bdbdbd;
     border-radius: 5px;
+    font-size: 15px;
 }
 
 .wrapper>* {
@@ -109,6 +111,7 @@ textarea {
     .wrapper {
         display: grid;
         grid-template-columns: 2fr 1fr;
+        margin-top: 80px;
     }
     .wrapper>* {
         padding: 2em 2em;
@@ -132,7 +135,7 @@ form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
-    /* padding-top: 50px */
+    margin-top: 25px
 }
 
 form label {
